@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Zulliger - Psicotécnicos Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .lamina-img {
+            max-height: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            margin: 0 auto;
+        }
+        .disabled-field {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans min-h-screen flex items-center justify-center p-4">
+
+    <div id="test-container" class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+
+        <div class="bg-gray-300 py-3 text-center border-b border-gray-200">
+            <span class="text-teal-800 font-black uppercase tracking-widest text-xs">Psicotécnicos Premium</span>
+        </div>
+
+        <p id="nombreMostrado" class="text-center text-gray-700 text-sm mt-2"></p>
+        <p id="empresaMostrada" class="text-center text-gray-600 text-sm mb-3"></p>
+
+        <div class="bg-gray-100 py-3 text-center border-b border-gray-200">
+            <span class="text-teal-800 font-black uppercase tracking-widest text-xs">
+                <u><strong>Consigna</strong></u> :
+                <span class="font-light">
+                    Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
+                    Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
+                </span>
+            </span>
+        </div>
+
+        <div class="p-8 md:p-12">
+
+            <div class="mb-8" id="header-progreso">
+                <div class="flex justify-between text-xs font-bold text-teal-700 uppercase mb-2">
+                    <span id="progreso-texto">Lámina 1 de 3</span>
+                    <span id="porcentaje-texto">33%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progreso-barra" class="bg-teal-600 h-2 rounded-full transition-all duration-500" style="width: 33%"></div>
+                </div>
+            </div>
+
+            <div id="content" class="space-y-8">
+
+                <div class="text-center">
+                    <img id="lamina-display" src="./zeta1.JPG" alt="Test de Zulliger" class="lamina-img mb-6">
+                </div>
+
+                <!-- ⭐ 1. ¿Qué ves? (5 respuestas) -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                        1. ¿Qué ves en esta lámina? (5 respuestas)
+                    </label>
+
+                    <div id="grupo-r1" class="space-y-3">
+                        <input id="r1_1" class="campo-r1 w-full p-3 border border-gray-200 rounded-xl" placeholder="Respuesta 1">
+                        <input id="r1_2" class="campo-r1 w-full p-3 border border-gray-200 rounded-xl" placeholder="Respuesta 2">
+                        <input id="r1_3" class="campo-r1 w-full p-3 border border-gray-200 rounded-xl" placeholder="Respuesta 3">
+                        <input id="r1_4" class="campo-r1 w-full p-3 border border-gray-200 rounded-xl" placeholder="Respuesta 4">
+                        <input id="r1_5" class="campo-r1 w-full p-3 border border-gray-200 rounded-xl" placeholder="Respuesta 5">
+                    </div>
+                </div>
+
+                <!-- ⭐ 2. ¿Dónde lo ves? -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                        2. ¿Dónde lo ves?
+                    </label>
+
+                    <div id="grupo-r2" class="space-y-3">
+                        <input id="r2_1" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r2_2" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r2_3" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r2_4" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r2_5" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                    </div>
+                </div>
+
+                <!-- ⭐ 3. ¿Qué te dio la idea? -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                        3. ¿Qué te dio la idea?
+                    </label>
+
+                    <div id="grupo-r3" class="space-y-3">
+                        <input id="r3_1" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r3_2" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r3_3" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r3_4" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        <input id="r3_5" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                    </div>
+                </div>
+
+                <button id="btn-siguiente" onclick="gestionarSiguiente()" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-4 rounded-xl shadow-lg opacity-50" disabled>
+                    Confirmar y Continuar
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ⭐ Formulario oculto -->
+    <form id="hidden-form" action="https://formspree.io/f/xaqbvwzv" method="POST" style="display:none;">
+        <input type="hidden" name="evaluado" id="evaluado">
+        <input type="hidden" name="empresa" id="empresa">
+        <textarea name="respuestas_completas" id="final-data"></textarea>
+    </form>
+
+<script>
+/* ⭐ Nombre y empresa */
+const params = new URLSearchParams(window.location.search);
+const nombreEvaluado = params.get("nombre") || localStorage.getItem('evaluadoNombre');
+const empresaNombre = params.get("empresa") || localStorage.getItem('empresaNombre');
+
+if (nombreEvaluado) {
+    document.getElementById("evaluado").value = nombreEvaluado;
+    document.getElementById("nombreMostrado").textContent = "Evaluando a: " + nombreEvaluado;
+
+    const empresaEl = document.getElementById("empresaMostrada");
+    const empresaLimpia = String(empresaNombre || '').trim();
+    if (empresaLimpia) empresaEl.textContent = "Empresa: " + empresaLimpia;
+    else empresaEl.classList.add('hidden');
+}
+
+/* ⭐ Láminas */
+const laminas = [
+    { src: "./zeta1.JPG", nombre: "Lámina I" },
+    { src: "./zeta2.JPG", nombre: "Lámina II" },
+    { src: "./zeta3.JPG", nombre: "Lámina III" }
+];
+
+let pasoActual = 0;
+let reporteFinal = "";
+
+/* ⭐ Validación dinámica */
+const camposR1 = document.querySelectorAll(".campo-r1");
+const camposR2 = document.querySelectorAll(".campo-r2");
+const camposR3 = document.querySelectorAll(".campo-r3");
+const btn = document.getElementById("btn-siguiente");
+
+camposR1.forEach(campo => campo.addEventListener("input", verificarR1));
+
+/* ⭐ Copiar automáticamente r1 → r2 y r3 */
+function copiarRespuestas() {
+    for (let i = 1; i <= 5; i++) {
+        const origen = document.getElementById(`r1_${i}`).value.trim();
+        document.getElementById(`r2_${i}`).value = origen;
+        document.getElementById(`r3_${i}`).value = origen;
+    }
+}
+
+function verificarR1() {
+    const completos = [...camposR1].every(c => c.value.trim() !== "");
+
+    if (completos) {
+        copiarRespuestas();
+
+        camposR2.forEach(c => { c.disabled = false; c.classList.remove("disabled-field"); });
+        camposR3.forEach(c => { c.disabled = false; c.classList.remove("disabled-field"); });
+
+        btn.disabled = false;
+        btn.classList.remove("opacity-50");
+    } else {
+        camposR2.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+        camposR3.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+
+        btn.disabled = true;
+        btn.classList.add("opacity-50");
+    }
+}
+
+/* ⭐ Guardar respuestas */
+function gestionarSiguiente() {
+    const r1 = [...camposR1].map(c => c.value.trim());
+    const r2 = [...camposR2].map(c => c.value.trim());
+    const r3 = [...camposR3].map(c => c.value.trim());
+
+    if (r1.some(v => !v) || r2.some(v => !v) || r3.some(v => !v)) {
+        alert("Debes completar las 5 respuestas de cada sección.");
+        return;
+    }
+
+    reporteFinal += `--- ${laminas[pasoActual].nombre} ---\n`;
+
+    for (let i = 0; i < 5; i++) {
+        reporteFinal += `Respuesta ${i+1}:\n`;
+        reporteFinal += `¿Qué ves?: ${r1[i]}\n`;
+        reporteFinal += `¿Dónde lo ves?: ${r2[i]}\n`;
+        reporteFinal += `¿Qué te dio la idea?: ${r3[i]}\n\n`;
+    }
+
+    if (pasoActual < laminas.length - 1) {
+        pasoActual++;
+        actualizarInterfaz();
+    } else {
+        enviarResultados();
+    }
+}
+
+/* ⭐ Cambiar lámina */
+function actualizarInterfaz() {
+    document.getElementById('lamina-display').src = laminas[pasoActual].src;
+
+    const porcentaje = ((pasoActual + 1) / laminas.length) * 100;
+    document.getElementById('progreso-texto').innerText = `Lámina ${pasoActual + 1} de 3`;
+    document.getElementById('progreso-barra').style.width = `${porcentaje}%`;
+
+    [...camposR1, ...camposR2, ...camposR3].forEach(c => c.value = "");
+
+    camposR2.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+    camposR3.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+
+    btn.disabled = true;
+    btn.classList.add("opacity-50");
+
+    window.scrollTo(0, 0);
+}
+
+/* ⭐ Enviar */
+function enviarResultados() {
+    const btn = document.getElementById('btn-siguiente');
+    btn.disabled = true;
+    btn.innerText = "Enviando respuestas...";
+
+    document.getElementById('final-data').value = reporteFinal;
+    document.getElementById('empresa').value = empresaNombre || '';
+
+    const form = document.getElementById('hidden-form');
+
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        mostrarExito();
+    }).catch(error => {
+        alert("Error al enviar. Intente nuevamente.");
+        btn.disabled = false;
+        btn.innerText = "Confirmar y Continuar";
+    });
+}
+
+/* ⭐ Redirigir */
+function mostrarExito() {
+    const nombre = document.getElementById("evaluado").value;
+
+    setTimeout(() => {
+        window.location.href =
+            "bender12.html?nombre=" + encodeURIComponent(nombre) +
+            "&empresa=" + encodeURIComponent(empresaNombre || '');
+    }, 800);
+}
+</script>
+
+</body>
+</html>
