@@ -30,15 +30,18 @@
         <p id="nombreMostrado" class="text-center text-gray-700 text-sm mt-2"></p>
         <p id="empresaMostrada" class="text-center text-gray-600 text-sm mb-3"></p>
 
+        
+
         <div class="bg-gray-100 py-3 text-center border-b border-gray-200">
-            <span class="text-teal-800 font-black uppercase tracking-widest text-xs">
-                <u><strong>Consigna</strong></u> :
-                <span class="font-light">
-                    Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
-                    Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
-                </span>
-            </span>
-        </div>
+    <span class="text-teal-800 font-black uppercase tracking-widest text-xs">
+        <u><strong>Consigna</strong></u> :
+        <span class="font-semibold text-gray-900">
+            Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
+            Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
+        </span>
+    </span>
+</div>
+
 
         <div class="p-8 md:p-12">
 
@@ -55,7 +58,7 @@
             <div id="content" class="space-y-8">
 
                 <div class="text-center">
-                    <img id="lamina-display" src="./zeta1.JPG" alt="Test de Zulliger" class="lamina-img mb-6">
+                    <img id="lamina-display" src="./zeta1.JPEG" alt="Test de Zulliger" class="lamina-img mb-6">
                 </div>
 
                 <!-- ⭐ 1. ¿Qué ves? (5 respuestas) -->
@@ -137,9 +140,9 @@ if (nombreEvaluado) {
 
 /* ⭐ Láminas */
 const laminas = [
-    { src: "./zeta1.JPG", nombre: "Lámina I" },
-    { src: "./zeta2.JPG", nombre: "Lámina II" },
-    { src: "./zeta3.JPG", nombre: "Lámina III" }
+    { src: "./zeta1.JPEG", nombre: "Lámina I" },
+    { src: "./zeta2.JPEG", nombre: "Lámina II" },
+    { src: "./zeta3.JPEG", nombre: "Lámina III" }
 ];
 
 let pasoActual = 0;
