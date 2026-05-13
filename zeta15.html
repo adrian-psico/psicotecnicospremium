@@ -16,6 +16,11 @@
         .disabled-field {
             background-color: #f3f4f6;
         }
+        .replica {
+            min-width: 120px;
+            color: #6b7280;
+            font-weight: 600;
+        }
     </style>
 </head>
 
@@ -55,7 +60,7 @@
             <div id="content" class="space-y-8">
 
                 <div class="text-center">
-                    <img id="lamina-display" src="./zeta1.JPG" alt="Test de Zulliger" class="lamina-img mb-6">
+                    <img id="lamina-display" src="./zeta1.jpeg" alt="Test de Zulliger" class="lamina-img mb-6">
                 </div>
 
                 <!-- ⭐ 1. ¿Qué ves? (5 respuestas) -->
@@ -73,33 +78,75 @@
                     </div>
                 </div>
 
-                <!-- ⭐ 2. ¿Dónde lo ves? -->
+                <!-- ⭐ 2. ¿Dónde lo ves? (réplica + campo real) -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">
                         2. ¿Dónde lo ves?
                     </label>
 
                     <div id="grupo-r2" class="space-y-3">
-                        <input id="r2_1" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r2_2" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r2_3" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r2_4" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r2_5" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_1" class="replica"></span>
+                            <input id="r2_1" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_2" class="replica"></span>
+                            <input id="r2_2" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_3" class="replica"></span>
+                            <input id="r2_3" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_4" class="replica"></span>
+                            <input id="r2_4" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_5" class="replica"></span>
+                            <input id="r2_5" class="campo-r2 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- ⭐ 3. ¿Qué te dio la idea? -->
+                <!-- ⭐ 3. ¿Qué te dio la idea? (réplica + campo real) -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">
                         3. ¿Qué te dio la idea?
                     </label>
 
                     <div id="grupo-r3" class="space-y-3">
-                        <input id="r3_1" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r3_2" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r3_3" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r3_4" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
-                        <input id="r3_5" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_1" class="replica"></span>
+                            <input id="r3_1" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_2" class="replica"></span>
+                            <input id="r3_2" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_3" class="replica"></span>
+                            <input id="r3_3" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_4" class="replica"></span>
+                            <input id="r3_4" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_5" class="replica"></span>
+                            <input id="r3_5" class="campo-r3 w-full p-3 border border-gray-200 rounded-xl disabled-field" disabled>
+                        </div>
+
                     </div>
                 </div>
 
@@ -118,7 +165,6 @@
         <input type="hidden" name="tiempos" id="tiempos">
         <textarea name="respuestas_completas" id="final-data"></textarea>
     </form>
-
 <script>
 /* ⭐ Nombre y empresa */
 const params = new URLSearchParams(window.location.search);
@@ -137,9 +183,9 @@ if (nombreEvaluado) {
 
 /* ⭐ Láminas */
 const laminas = [
-    { src: "./zeta1.JPG", nombre: "Lámina I" },
-    { src: "./zeta2.JPG", nombre: "Lámina II" },
-    { src: "./zeta3.JPG", nombre: "Lámina III" }
+    { src: "./zeta1.jpeg", nombre: "Lámina I" },
+    { src: "./zeta2.jpeg", nombre: "Lámina II" },
+    { src: "./zeta3.jpeg", nombre: "Lámina III" }
 ];
 
 let pasoActual = 0;
@@ -168,18 +214,13 @@ function actualizarReplica(n) {
     const origen = document.getElementById(`r1_${n}`).value.trim();
     const valor = origen ? origen + " :" : "";
 
-    const r2 = document.getElementById(`r2_${n}`);
-    const r3 = document.getElementById(`r3_${n}`);
+    // Actualizar réplica visible (NO editable)
+    document.getElementById(`r2_replica_${n}`).textContent = valor;
+    document.getElementById(`r3_replica_${n}`).textContent = valor;
 
-    r2.value = valor;
-    r3.value = valor;
-
-    if (valor) {
-        setTimeout(() => {
-            r2.setSelectionRange(valor.length, valor.length);
-            r3.setSelectionRange(valor.length, valor.length);
-        }, 10);
-    }
+    // Limpiar campo real editable
+    document.getElementById(`r2_${n}`).value = "";
+    document.getElementById(`r3_${n}`).value = "";
 }
 
 /* ⭐ Habilitar todo con 3 respuestas */
@@ -210,8 +251,10 @@ function gestionarSiguiente() {
     tiemposLaminas.push(segundos);
 
     const r1 = [...camposR1].map(c => c.value.trim());
-    const r2 = [...camposR2].map(c => c.value.trim());
-    const r3 = [...camposR3].map(c => c.value.trim());
+
+    // SOLO lo que escribe el evaluado después de ":"
+    const r2_real = [...Array(5)].map((_,i)=>document.getElementById(`r2_${i+1}`).value.trim());
+    const r3_real = [...Array(5)].map((_,i)=>document.getElementById(`r3_${i+1}`).value.trim());
 
     // Validar solo que haya 3 respuestas en r1
     const completasR1 = r1.filter(v => v !== "").length;
@@ -221,14 +264,20 @@ function gestionarSiguiente() {
         return;
     }
 
+    // Validar que TODAS las respuestas reales estén completas
+    if (r2_real.some(v => v === "") || r3_real.some(v => v === "")) {
+        alert("Debes completar lo que escribes después de ':' en todas las respuestas.");
+        return;
+    }
+
     reporteFinal += `--- ${laminas[pasoActual].nombre} ---\n`;
     reporteFinal += `Tiempo: ${segundos} segundos\n\n`;
 
     for (let i = 0; i < 5; i++) {
         reporteFinal += `Respuesta ${i+1}:\n`;
         reporteFinal += `¿Qué ves?: ${r1[i]}\n`;
-        reporteFinal += `¿Dónde lo ves?: ${r2[i]}\n`;
-        reporteFinal += `¿Qué te dio la idea?: ${r3[i]}\n\n`;
+        reporteFinal += `¿Dónde lo ves?: ${r2_real[i]}\n`;
+        reporteFinal += `¿Qué te dio la idea?: ${r3_real[i]}\n\n`;
     }
 
     if (pasoActual < laminas.length - 1) {
@@ -248,6 +297,12 @@ function actualizarInterfaz() {
     document.getElementById('progreso-barra').style.width = `${porcentaje}%`;
 
     [...camposR1, ...camposR2, ...camposR3].forEach(c => c.value = "");
+
+    // Limpiar réplicas
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById(`r2_replica_${i}`).textContent = "";
+        document.getElementById(`r3_replica_${i}`).textContent = "";
+    }
 
     camposR2.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
     camposR3.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
@@ -292,7 +347,7 @@ function mostrarExito() {
 
     setTimeout(() => {
         window.location.href =
-            "bender12.html?nombre=" + encodeURIComponent(nombre) +
+            "bender13.html?nombre=" + encodeURIComponent(nombre) +
             "&empresa=" + encodeURIComponent(empresaNombre || '');
     }, 800);
 }
