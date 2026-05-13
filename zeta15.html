@@ -30,18 +30,15 @@
         <p id="nombreMostrado" class="text-center text-gray-700 text-sm mt-2"></p>
         <p id="empresaMostrada" class="text-center text-gray-600 text-sm mb-3"></p>
 
-        
-
         <div class="bg-gray-100 py-3 text-center border-b border-gray-200">
-    <span class="text-teal-800 font-black uppercase tracking-widest text-xs">
-        <u><strong>Consigna</strong></u> :
-        <span class="font-semibold text-gray-900">
-            Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
-            Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
-        </span>
-    </span>
-</div>
-
+            <span class="text-teal-800 font-black uppercase tracking-widest text-xs">
+                <u><strong>Consigna</strong></u> :
+                <span class="font-light">
+                    Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
+                    Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
+                </span>
+            </span>
+        </div>
 
         <div class="p-8 md:p-12">
 
@@ -58,7 +55,7 @@
             <div id="content" class="space-y-8">
 
                 <div class="text-center">
-                    <img id="lamina-display" src="./zeta1.jpeg" alt="Test de Zulliger" class="lamina-img mb-6">
+                    <img id="lamina-display" src="./zeta1.JPG" alt="Test de Zulliger" class="lamina-img mb-6">
                 </div>
 
                 <!-- ⭐ 1. ¿Qué ves? (5 respuestas) -->
@@ -79,7 +76,7 @@
                 <!-- ⭐ 2. ¿Dónde lo ves? -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">
-                        2. ¿Dónde lo ves? (En que parte de la mancha está ubicada tu respuesta ? Se lo más preciso que puedas)
+                        2. ¿Dónde lo ves?
                     </label>
 
                     <div id="grupo-r2" class="space-y-3">
@@ -94,8 +91,7 @@
                 <!-- ⭐ 3. ¿Qué te dio la idea? -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">
-                        3. ¿Qué te dio la idea? (Que aspecto de la mancha determinó tu/s respuesta/s?)
-
+                        3. ¿Qué te dio la idea?
                     </label>
 
                     <div id="grupo-r3" class="space-y-3">
@@ -119,6 +115,7 @@
     <form id="hidden-form" action="https://formspree.io/f/xaqbvwzv" method="POST" style="display:none;">
         <input type="hidden" name="evaluado" id="evaluado">
         <input type="hidden" name="empresa" id="empresa">
+        <input type="hidden" name="tiempos" id="tiempos">
         <textarea name="respuestas_completas" id="final-data"></textarea>
     </form>
 
@@ -140,37 +137,56 @@ if (nombreEvaluado) {
 
 /* ⭐ Láminas */
 const laminas = [
-    { src: "./zeta1.jpeg", nombre: "Lámina I" },
-    { src: "./zeta2.jpeg", nombre: "Lámina II" },
-    { src: "./zeta3.jpeg", nombre: "Lámina III" }
+    { src: "./zeta1.JPG", nombre: "Lámina I" },
+    { src: "./zeta2.JPG", nombre: "Lámina II" },
+    { src: "./zeta3.JPG", nombre: "Lámina III" }
 ];
 
 let pasoActual = 0;
 let reporteFinal = "";
 
-/* ⭐ Validación dinámica */
+/* ⭐ Tiempo por lámina */
+let tiempoInicio = Date.now();
+let tiemposLaminas = [];
+
+/* ⭐ Campos */
 const camposR1 = document.querySelectorAll(".campo-r1");
 const camposR2 = document.querySelectorAll(".campo-r2");
 const camposR3 = document.querySelectorAll(".campo-r3");
 const btn = document.getElementById("btn-siguiente");
 
-camposR1.forEach(campo => campo.addEventListener("input", verificarR1));
+/* ⭐ Listener por índice */
+camposR1.forEach((campo, index) => {
+    campo.addEventListener("input", () => {
+        verificarR1();
+        actualizarReplica(index + 1);
+    });
+});
 
-/* ⭐ Copiar automáticamente r1 → r2 y r3 */
-function copiarRespuestas() {
-    for (let i = 1; i <= 5; i++) {
-        const origen = document.getElementById(`r1_${i}`).value.trim();
-        document.getElementById(`r2_${i}`).value = origen;
-        document.getElementById(`r3_${i}`).value = origen;
+/* ⭐ Actualizar SOLO la réplica correspondiente */
+function actualizarReplica(n) {
+    const origen = document.getElementById(`r1_${n}`).value.trim();
+    const valor = origen ? origen + " :" : "";
+
+    const r2 = document.getElementById(`r2_${n}`);
+    const r3 = document.getElementById(`r3_${n}`);
+
+    r2.value = valor;
+    r3.value = valor;
+
+    if (valor) {
+        setTimeout(() => {
+            r2.setSelectionRange(valor.length, valor.length);
+            r3.setSelectionRange(valor.length, valor.length);
+        }, 10);
     }
 }
 
+/* ⭐ Habilitar todo con 3 respuestas */
 function verificarR1() {
-    const completos = [...camposR1].every(c => c.value.trim() !== "");
+    const completas = [...camposR1].filter(c => c.value.trim() !== "").length;
 
-    if (completos) {
-        copiarRespuestas();
-
+    if (completas >= 3) {
         camposR2.forEach(c => { c.disabled = false; c.classList.remove("disabled-field"); });
         camposR3.forEach(c => { c.disabled = false; c.classList.remove("disabled-field"); });
 
@@ -187,16 +203,26 @@ function verificarR1() {
 
 /* ⭐ Guardar respuestas */
 function gestionarSiguiente() {
+
+    /* ⏱ Registrar tiempo */
+    let tiempoFin = Date.now();
+    let segundos = Math.round((tiempoFin - tiempoInicio) / 1000);
+    tiemposLaminas.push(segundos);
+
     const r1 = [...camposR1].map(c => c.value.trim());
     const r2 = [...camposR2].map(c => c.value.trim());
     const r3 = [...camposR3].map(c => c.value.trim());
 
-    if (r1.some(v => !v) || r2.some(v => !v) || r3.some(v => !v)) {
-        alert("Debes completar las 5 respuestas de cada sección.");
+    // Validar solo que haya 3 respuestas en r1
+    const completasR1 = r1.filter(v => v !== "").length;
+
+    if (completasR1 < 3) {
+        alert("Debes completar al menos 3 respuestas en esta lámina.");
         return;
     }
 
     reporteFinal += `--- ${laminas[pasoActual].nombre} ---\n`;
+    reporteFinal += `Tiempo: ${segundos} segundos\n\n`;
 
     for (let i = 0; i < 5; i++) {
         reporteFinal += `Respuesta ${i+1}:\n`;
@@ -229,6 +255,9 @@ function actualizarInterfaz() {
     btn.disabled = true;
     btn.classList.add("opacity-50");
 
+    /* Reiniciar tiempo */
+    tiempoInicio = Date.now();
+
     window.scrollTo(0, 0);
 }
 
@@ -240,6 +269,7 @@ function enviarResultados() {
 
     document.getElementById('final-data').value = reporteFinal;
     document.getElementById('empresa').value = empresaNombre || '';
+    document.getElementById('tiempos').value = JSON.stringify(tiemposLaminas);
 
     const form = document.getElementById('hidden-form');
 
@@ -262,7 +292,7 @@ function mostrarExito() {
 
     setTimeout(() => {
         window.location.href =
-            "bender13.html?nombre=" + encodeURIComponent(nombre) +
+            "bender12.html?nombre=" + encodeURIComponent(nombre) +
             "&empresa=" + encodeURIComponent(empresaNombre || '');
     }, 800);
 }
@@ -270,3 +300,4 @@ function mostrarExito() {
 
 </body>
 </html>
+
