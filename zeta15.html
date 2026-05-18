@@ -264,11 +264,15 @@ function gestionarSiguiente() {
         return;
     }
 
-    // Validar que TODAS las respuestas reales estén completas
-    if (r2_real.some(v => v === "") || r3_real.some(v => v === "")) {
-        alert("Debes completar todas las respuestas.");
+// Validar solo las respuestas reales correspondientes a r1 completadas
+for (let i = 0; i < 5; i++) {
+    if (r1[i] !== "" && (r2_real[i] === "" || r3_real[i] === "")) {
+        alert("Debes completar lo que escribes después de ':' en las respuestas que hayas dado.");
         return;
     }
+}
+    
+   
 
     reporteFinal += `--- ${laminas[pasoActual].nombre} ---\n`;
     reporteFinal += `Tiempo: ${segundos} segundos\n\n`;
