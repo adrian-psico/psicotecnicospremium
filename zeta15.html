@@ -162,7 +162,6 @@
     <form id="hidden-form" action="https://formspree.io/f/xaqbvwzv" method="POST" style="display:none;">
         <input type="hidden" name="evaluado" id="evaluado">
         <input type="hidden" name="empresa" id="empresa">
-        <input type="hidden" name="tiempos" id="tiempos">
         <textarea name="respuestas_completas" id="final-data"></textarea>
     </form>
 <script>
@@ -245,10 +244,18 @@ function verificarR1() {
 /* ⭐ Guardar respuestas */
 function gestionarSiguiente() {
 
-    /* ⏱ Registrar tiempo */
-    let tiempoFin = Date.now();
-    let segundos = Math.round((tiempoFin - tiempoInicio) / 1000);
-    tiemposLaminas.push(segundos);
+ /* ⏱ Registrar tiempo */
+let tiempoFin = Date.now();
+let totalSegundos = Math.floor((tiempoFin - tiempoInicio) / 1000);
+let minutos = Math.floor(totalSegundos / 60);
+let segundos = totalSegundos % 60;
+
+let tiempoFormateado = `${minutos} min ${segundos} seg`;
+
+tiemposLaminas.push(tiempoFormateado);
+
+
+
 
     const r1 = [...camposR1].map(c => c.value.trim());
 
@@ -264,6 +271,7 @@ function gestionarSiguiente() {
         return;
     }
 
+
 // Validar solo las respuestas reales correspondientes a r1 completadas
 for (let i = 0; i < 5; i++) {
     if (r1[i] !== "" && (r2_real[i] === "" || r3_real[i] === "")) {
@@ -271,11 +279,14 @@ for (let i = 0; i < 5; i++) {
         return;
     }
 }
+
+
     
-   
 
     reporteFinal += `--- ${laminas[pasoActual].nombre} ---\n`;
-    reporteFinal += `Tiempo: ${segundos} segundos\n\n`;
+    
+    reporteFinal += `Tiempo: ${tiempoFormateado}\n\n`;
+
 
     for (let i = 0; i < 5; i++) {
         reporteFinal += `Respuesta ${i+1}:\n`;
@@ -328,7 +339,7 @@ function enviarResultados() {
 
     document.getElementById('final-data').value = reporteFinal;
     document.getElementById('empresa').value = empresaNombre || '';
-    document.getElementById('tiempos').value = JSON.stringify(tiemposLaminas);
+    
 
     const form = document.getElementById('hidden-form');
 
@@ -359,4 +370,5 @@ function mostrarExito() {
 
 </body>
 </html>
+
 
