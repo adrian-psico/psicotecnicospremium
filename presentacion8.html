@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentación: Informes Psicotécnicos Estratégicos - Lic. Andrea S. Civati</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-teal: #6b9a99;
+      --dark-teal: #4a6d6c;
+      --light-bg: #f4f7f7;
+      --accent-green: #acc6c5;
+      --text-dark: #333;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .hero {
+      background-color: var(--primary-teal);
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+    .hero p  { font-size: 1.5rem; font-weight: 300; }
+
+    h2 {
+      color: var(--primary-teal);
+      font-size: 2.5rem;
+      border-left: 8px solid var(--accent-green);
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover { transform: translateY(-10px); }
+
+    .card h4 { color: var(--dark-teal); font-size: 1.2rem; margin-top: 0; }
+
+    .benefit-list { list-style: none; padding: 0; }
+
+    .benefit-list li {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    .benefit-list li::before {
+      content: "✓";
+      color: var(--primary-teal);
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+
+    .nav-dots {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 100;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dot:hover { background: var(--primary-teal); }
+
+    .btn-cerrar {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 40px;
+      border: 2px solid white;
+      background: transparent;
+      color: white;
+      border-radius: 50px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-cerrar:hover {
+      background: white;
+      color: var(--primary-teal);
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    #bannerConstruccion {
+      display:none;
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9999;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #bannerConstruccion .modal-card {
+      max-width: 720px;
+      margin: 10vh auto;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    #bannerConstruccion .modal-card h3 {
+      margin-top: 0;
+      color: var(--dark-teal);
+      font-size: 1.8rem;
+    }
+
+    #bannerConstruccion .modal-card p {
+      margin: 10px 0 0 0;
+      color: var(--text-dark);
+      font-size: 1.05rem;
+      line-height: 1.4;
+    }
+
+    #bannerConstruccion .modal-actions { margin-top: 18px; }
+
+    #bannerConstruccion .btn-cerrar {
+      border-color: var(--primary-teal);
+      background: var(--primary-teal);
+      color: white;
+      margin-top: 0;
+    }
+
+    #bannerConstruccion .btn-cerrar:hover {
+      background: transparent;
+      color: var(--primary-teal);
+    }
+
+    .btn-modal {
+      border-color: var(--primary-teal) !important;
+      background: var(--primary-teal) !important;
+      color: white !important;
+    }
+
+    .btn-modal:hover {
+      background: transparent !important;
+      color: var(--primary-teal) !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="nav-dots">
+    <a href="#inicio" class="dot"></a>
+    <a href="#valor" class="dot"></a>
+    <a href="#metodologia" class="dot"></a>
+    <a href="#casos" class="dot"></a>
+    <a href="#contacto" class="dot"></a>
+  </div>
+
+  <section id="inicio" class="hero">
+    <div class="container">
+      <h1>Psicotécnicos</h1>
+      <h1>Premium</h1>
+      <p>La precisión clínica aplicada a la toma de decisiones corporativas.</p>
+      <p style="margin-top: 50px; font-weight: 700;">Lic. Andrea S. Civati</p>
+    </div>
+  </section>
+
+  <section id="valor">
+    <div class="container">
+      <h2>¿Por qué el Psicotécnico es una inversión?</h2>
+      <div class="grid">
+        <div class="card">
+          <h4>Mitigación de Riesgos</h4>
+          <p>Detección temprana de perfiles que no se ajustan a posiciones críticas o de seguridad.</p>
+        </div>
+        <div class="card">
+          <h4>Adecuación Puesto-Persona</h4>
+          <p>Garantizamos que las competencias coincidan con el rol.</p>
+        </div>
+        <div class="card">
+          <h4>Optimización de Costos</h4>
+          <p>Reducción drástica de la rotación temprana mediante ingresos sólidos y proyecciones de desempeño.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="metodologia" style="background-color: white;">
+    <div class="container">
+      <h2>Metodología de Alta Precisión</h2>
+      <p>La capacidad de entender la profundidad psíquica del individuo con un enfoque corporativo que permita arribar a resultados precisos y medibles.</p>
+      <ul class="benefit-list">
+        <li><strong style="margin-right: 20px;">Herramientas:</strong> Innovación tecnológica combinada con conocimiento clínico, corporativo y la confiabilidad de técnicas psicológicas baremadas y aprobadas en argentina.</li>
+        <li><strong style="margin-right: 20px;">Evaluación por Competencias:</strong> Orientando dicha evaluación a identificar los comportamientos observables y/o potenciales en el entorno laboral.</li>
+        <li><strong style="margin-right: 20px;">Estandares de Excelencia:</strong> Más de 15 años de experiencia en y para empresas con estrictos procesos de incorporación de personal y desarrollo de personas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="casos">
+    <div class="container">
+      <h2>Más allá del Ingreso</h2>
+      <div class="grid">
+
+        <div class="card" style="border-top: 5px solid var(--primary-teal);">
+          <h4>Control de Ausentismo</h4>
+          <p>
+            Combinamos la rigurosidad del seguimiento clínico con una visión de desarrollo humano.
+            Nuestro objetivo es transformar la gestión de licencias en una oportunidad para asegurar el bienestar emocional / psicológico del colaborador
+            y su correcta reinserción a la empresa.
+          </p>
+
+          <div style="margin-top: 18px;">
+            <button onclick="clickAusentismo()" class="btn-cerrar btn-modal">Ingresar</button>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 5px solid var(--primary-teal);">
+          <h4>Desarrollo de Personas</h4>
+          <p>El cambio de rol es una oportunidad estratégica para que la organización se fortalezca desde adentro. No se trata solo de llenar una vacante, sino de reconocer el potencial de quien ya forma parte de la cultura y brindarle el escenario adecuado para que siga sumando valor.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" style="background-color: var(--primary-teal); color: white;">
+    <div class="container" style="text-align: center;">
+      <h2 style="border-left: none; color: white;">Hablemos de Talento</h2>
+      <p style="font-size: 1.2rem;">Transforme su proceso de selección en una ventaja competitiva con informes de alta calidad técnica.</p>
+
+      <div style="margin-top: 40px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px;">
+        <p>
+          <strong>Lic. Andrea S. Civati</strong><br>
+          Especialista en Psicología Laboral | Evaluación Estratégica<br>
+          +15 años de trayectoria corporativa
+        </p>
+      </div>
+
+      <button onclick="window.close()" class="btn-cerrar">Cerrar y Volver</button>
+    </div>
+  </section>
+
+  <div id="bannerConstruccion">
+    <div class="modal-card">
+      <h3>Sitio en construcción</h3>
+      <p><b>Lic. Andrea Civati</b></p>
+      <p>Consultas: <b>gerencia@psicotecnicospremium.com</b><br>Respuesta en 24 hs</p>
+
+      <div class="modal-actions">
+        <button onclick="ocultarBannerConstruccion()" class="btn-cerrar">Cerrar y volver</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function mostrarBannerConstruccion(){
+      var el = document.getElementById('bannerConstruccion');
+      if(el){
+        el.style.display = 'block';
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function ocultarBannerConstruccion(){
+      var el = document.getElementById('bannerConstruccion');
+      if(el){
+        el.style.display = 'none';
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+    }
+
+    // 🚀 NUEVA FUNCIÓN: Enviar mail a Formspree + abrir modal
+    function clickAusentismo() {
+
+      // 1) Mostrar modal
+      mostrarBannerConstruccion();
+
+      // 2) Enviar aviso a Formspree
+      fetch("https://formspree.io/f/xjgjaowl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mensaje: "Recibiste un nuevo click en Control de Ausentismo"
+        })
+      });
+    }
+  </script>
+
+  <footer>
+    <p>&copy; 2026 Presentación Profesional | Lic. Andrea S. Civati</p>
+  </footer>
+
+</body>
+</html>
