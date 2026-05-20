@@ -6,6 +6,26 @@
     <title>Evaluación Zulliger - Psicotécnicos Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
+
+<style>
+/* Campos de “Que ves” */
+    input[id^="r1_"] {
+        background-color: #f0f0f0;
+    }
+
+
+    /* Campos de “Dónde lo ves” */
+    input[id^="r2_"] {
+        background-color: #f0f0f0;
+    }
+
+    /* Campos de “Qué te dio la idea” */
+    input[id^="r3_"] {
+        background-color: #f0f0f0;
+    }
+</style>
+
+
     <style>
         .lamina-img {
             max-height: 400px;
@@ -28,23 +48,38 @@
 
     <div id="test-container" class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
 
-        <div class="bg-gray-300 py-3 text-center border-b border-gray-200">
-            <span class="text-teal-800 font-black uppercase tracking-widest text-xs">Psicotécnicos Premium</span>
-        </div>
+
+<div class="py-3 text-center border-b border-gray-200" style="background-color:#134254;">
+    <span class="text-white font-black uppercase tracking-widest text-xs">
+        Psicotécnicos Premium
+    </span>
+</div>
+
+
+
+       
 
         <p id="nombreMostrado" class="text-center text-gray-700 text-sm mt-2"></p>
         <p id="empresaMostrada" class="text-center text-gray-600 text-sm mb-3"></p>
 
-       
-      <div class="py-3 text-center border-b border-gray-200" style="background-color:#134254;">
-    <span class="text-white font-black uppercase tracking-widest text-xs">
+
+<div class="py-3 text-center border-b border-gray-200" style="background-color:#efe6d4;">
+    <span class="text-black font-black uppercase tracking-widest text-xs">
         <u><strong>Consigna</strong></u> :
-        <span class="font-light text-white">
+        <span class="text-black font-black uppercase tracking-widest text-xs">
             Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
             Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
         </span>
     </span>
 </div>
+
+
+
+
+
+
+       
+     
 
 
         <div class="p-8 md:p-12">
@@ -54,9 +89,15 @@
                     <span id="progreso-texto">Lámina 1 de 3</span>
                     <span id="porcentaje-texto">33%</span>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div id="progreso-barra" class="bg-teal-600 h-2 rounded-full transition-all duration-500" style="width: 33%"></div>
-                </div>
+
+
+
+<div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progreso-barra" class="bg-teal-600 h-2 rounded-full transition-all duration-500" style="width: 33%; background-color:#134254;"></div>
+
+
+
+                
             </div>
 
             <div id="content" class="space-y-8">
@@ -152,9 +193,19 @@
                     </div>
                 </div>
 
-                <button id="btn-siguiente" onclick="gestionarSiguiente()" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-4 rounded-xl shadow-lg opacity-50" disabled>
-                    Confirmar y Continuar
-                </button>
+
+<button id="btn-siguiente" onclick="gestionarSiguiente()"
+    class="w-full text-white font-bold py-4 rounded-xl shadow-lg opacity-50"
+    style="background-color:#134254;"
+    onmouseover="this.style.backgroundColor='#0f3442'"
+    onmouseout="this.style.backgroundColor='#134254'"
+    disabled>
+    Confirmar y Continuar
+</button>
+
+
+
+                
 
             </div>
         </div>
@@ -174,11 +225,11 @@ const empresaNombre = params.get("empresa") || localStorage.getItem('empresaNomb
 
 if (nombreEvaluado) {
     document.getElementById("evaluado").value = nombreEvaluado;
-    document.getElementById("nombreMostrado").textContent = "Evaluando a: " + nombreEvaluado;
+    document.getElementById("nombreMostrado").textContent = "Evaluando a : " + nombreEvaluado;
 
     const empresaEl = document.getElementById("empresaMostrada");
     const empresaLimpia = String(empresaNombre || '').trim();
-    if (empresaLimpia) empresaEl.textContent = "Empresa: " + empresaLimpia;
+    if (empresaLimpia) empresaEl.textContent = "Empresa : " + empresaLimpia;
     else empresaEl.classList.add('hidden');
 }
 
@@ -372,5 +423,4 @@ function mostrarExito() {
 
 </body>
 </html>
-
 
