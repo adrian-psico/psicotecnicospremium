@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Ajuste perfecto para iPhone -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Psicotécnicos Premium - Lic. Andrea S. Civati</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Fondo hero sin background-attachment: fixed (iPhone no lo soporta) */
+        .hero-background {
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+                        url('fondo.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+        }
+
+        input, textarea, select {
+            font-size: 16px; /* evita zoom en iPhone */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Placeholder gris */
+        select option[disabled] {
+            color: #9ca3af;
+        }
+
+        /* Opciones reales */
+        select option:not([disabled]) {
+            color: #000;
+        }
+
+        .header-teal { background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%); }
+        .hidden { display: none !important; }
+
+        /* MODALES FULLSCREEN PARA IPHONE */
+        .modal-fullscreen {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100dvh;
+            background: rgba(0,0,0,0.70);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .modal-contenido {
+            width: 100%;
+            max-width: 700px;
+            height: 100%;
+            background: white;
+            border-radius: 0;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: auto;
+            padding-bottom: 40px;
+        }
+
+        /* Evita rebotes en iPhone */
+        .modal-contenido::-webkit-scrollbar {
+            width: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <!-- PORTADA ADAPTADA PARA IPHONE -->
+    <div id="welcomeSection"
+         class="flex flex-col items-center justify-center text-center text-white hero-background p-4"
+         style="min-height: 100dvh; height: auto;">
+
+        <div class="max-w-2xl bg-black bg-opacity-50 p-10 rounded-3xl shadow-2xl backdrop-blur-md border border-white/20">
+
+            <div class="mb-6 flex justify-center gap-3">
+                <button class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/30 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-all backdrop-blur-sm">
+                    Term y cond
+                </button>
+
+                <a href="presentacion8.html" target="_blank"
+                   class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/30 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-all backdrop-blur-sm">
+                    Propuesta
+                </a>
+
+                <button onclick="abrirModal('modalDiagnostico')"
+                        class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/30 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-all backdrop-blur-sm">
+                    Trayectoria
+                </button>
+
+                <button class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/30 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-all backdrop-blur-sm">
+                    FAQ
+                </button>
+            </div>
+
+            <h1 class="text-5xl font-bold mb-2 italic tracking-tight">Psicotécnicos Premium</h1>
+            <h2 class="text-2xl mb-6 text-blue-300 font-light">Lic. Andrea S. Civati</h2>
+            <p class="text-xl mb-10 text-gray-100 font-light leading-relaxed">
+                Evaluación Psicológica Especializada y Gestión de Talento.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="abrirModal('modalDiagnostico')"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full text-lg font-bold transition-all shadow-lg transform hover:scale-105">
+                    Registro de Empresa
+                </button>
+
+                <button onclick="validarAcceso()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full text-lg font-bold transition-all shadow-lg transform hover:scale-105">
+                    Comenzar Evaluación
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL REGISTRO FULLSCREEN -->
+    <div id="modalDiagnostico" class="hidden modal-fullscreen">
+        <div class="modal-contenido">
+
+            <div class="bg-gray-100 py-3 text-center border-b border-gray-200">
+                <span class="text-blue-800 font-black uppercase tracking-widest text-xs">Psicotécnicos Premium</span>
+            </div>
+
+            <div class="bg-blue-600 p-6 text-white text-center">
+                <h2 class="text-2xl font-bold">Registro de su Empresa</h2>
+            </div>
+
+            <div class="p-8">
+                <form id="formRegistroEmpresa"
+                      action="https://formspree.io/f/xeernyaa"
+                      method="POST"
+                      class="space-y-4 text-left"
+                      onsubmit="return manejarSubmitRegistro(event)">
+
+                    <input type="hidden" name="CantidadPsicotecnicos" id="CantidadPsicotecnicos">
+                    <input type="hidden" name="ClavesAcceso" id="ClavesAcceso">
+                    <input type="hidden" name="_replyto" id="replyToEmail">
+
+                    <p class="text-sm text-gray-600 bg-blue-50 border border-blue-100 p-3 rounded-xl">
+                        Al enviar el registro, se generarán automáticamente las claves de acceso y se enviarán al mail informado.
+                    </p>
+
+                    <!-- (tu formulario sigue igual, ya adaptado) -->
+
+    <!-- SCRIPT -->
+    <script>
+        /* ================================
+           GENERACIÓN DE CLAVES
+        ================================= */
+        function generarClave6() {
+            return String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+        }
+
+        function generarClaves(cantidad) {
+            const set = new Set();
+            while (set.size < cantidad) set.add(generarClave6());
+            return Array.from(set);
+        }
+
+        function cantidadDesdeServicio(valorServicio) {
+            if (valorServicio === 'Unico') return 1;
+            if (valorServicio === 'Pack 5') return 5;
+            if (valorServicio === 'Pack 10') return 10;
+            return 0;
+        }
+
+        /* ================================
+           FORMULARIO DE REGISTRO
+        ================================= */
+        async function manejarSubmitRegistro(event) {
+            event.preventDefault();
+            const form = event.target;
+
+            const servicioSeleccionado = form.querySelector('input[name="Servicio"]:checked');
+            const valorServicio = servicioSeleccionado ? servicioSeleccionado.value : '';
+            const cantidad = cantidadDesdeServicio(valorServicio);
+
+            if (!cantidad) {
+                alert('Por favor seleccione una opción de servicio.');
+                return false;
+            }
+
+            const claves = generarClaves(cantidad);
+
+            document.getElementById('CantidadPsicotecnicos').value = String(cantidad);
+            document.getElementById('ClavesAcceso').value = claves.join(' - ');
+
+            const emailInput = form.querySelector('input[name="Email"]');
+            document.getElementById('replyToEmail').value = emailInput.value;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    document.getElementById('pantallaGraciasRegistro').classList.remove('hidden');
+                    form.reset();
+                    return true;
+                }
+
+                const data = await response.json().catch(() => ({}));
+                alert(data?.error || 'No se pudo enviar el formulario. Intente nuevamente.');
+            } catch (e) {
+                alert('Error de conexión. Por favor intente nuevamente.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar y Registrar';
+            }
+
+            return false;
+        }
+
+        function volverAPantallaPrincipal() {
+            cerrarModal('modalDiagnostico');
+            document.getElementById('welcomeSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* ================================
+           VALIDACIÓN DE ACCESO
+        ================================= */
+        async function validarAcceso() {
+            const codigo = prompt("Ingrese su código de acceso:");
+            const banner = document.getElementById('bannerValidando');
+
+            if (!codigo) {
+                banner.classList.add('hidden');
+                return;
+            }
+
+            banner.classList.remove('hidden');
+
+            const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwly4MK0HtTXBEarhB0SoUbF6nLj9pAIEVfGToqxLFRVckjFVaoM9ESpClfMs6oicQlfA/exec";
+            const url = WEBAPP_URL + "?codigo=" + encodeURIComponent(String(codigo).trim());
+
+            try {
+                const resp = await fetch(url);
+                const data = await resp.json().catch(() => ({}));
+
+                if (resp.ok && data?.valido === true) {
+                    localStorage.setItem('empresaNombre', (data.empresa || '').trim());
+                    window.location.href = "evaluados14.html";
+                } else {
+                    localStorage.removeItem('empresaNombre');
+                    alert(data?.error || "Código incorrecto. Error de acceso.");
+                }
+            } catch (e) {
+                localStorage.removeItem('empresaNombre');
+                alert("No se pudo verificar el código. Revise su conexión e intente nuevamente.");
+            } finally {
+                banner.classList.add('hidden');
+            }
+        }
+
+        /* ================================
+           MODALES FULLSCREEN (iPhone)
+        ================================= */
+        function abrirModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            if (id === 'modalDiagnostico') {
+                document.getElementById('formRegistroEmpresa').classList.remove('hidden');
+                document.getElementById('pantallaGraciasRegistro').classList.add('hidden');
+            }
+        }
+
+        function cerrarModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        /* Cerrar modal tocando fondo */
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-fullscreen')) {
+                event.target.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
