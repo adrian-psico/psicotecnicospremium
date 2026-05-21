@@ -49,7 +49,7 @@
 
 </div>
 
-            <h1 class="text-5xl font-bold mb-2 italic tracking-tight">Psicotécnicos Premium 2143</h1>
+            <h1 class="text-5xl font-bold mb-2 italic tracking-tight">Psicotécnicos Premium</h1>
             <h2 class="text-2xl mb-6 text-blue-300 font-light">Lic. Andrea S. Civati</h2>
             <p class="text-xl mb-10 text-gray-100 font-light leading-relaxed">Evaluación Psicológica Especializada y Gestión de Talento.</p>
 
@@ -215,158 +215,154 @@
         </div>
     </div>
 
+    <script>
+        function generarClave6() {
+            return String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+        }
 
+        function generarClaves(cantidad) {
+            const set = new Set();
+            while (set.size < cantidad) set.add(generarClave6());
+            return Array.from(set);
+        }
 
-<script>
-    function generarClave6() {
-        return String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
-    }
+        function cantidadDesdeServicio(valorServicio) {
+            if (valorServicio === 'Unico') return 1;
+            if (valorServicio === 'Pack 5') return 5;
+            if (valorServicio === 'Pack 10') return 10;
+            return 0;
+        }
 
-    function generarClaves(cantidad) {
-        const set = new Set();
-        while (set.size < cantidad) set.add(generarClave6());
-        return Array.from(set);
-    }
+        async function manejarSubmitRegistro(event) {
+            event.preventDefault();
+            const form = event.target;
 
-    function cantidadDesdeServicio(valorServicio) {
-        if (valorServicio === 'Unico') return 1;
-        if (valorServicio === 'Pack 5') return 5;
-        if (valorServicio === 'Pack 10') return 10;
-        return 0;
-    }
+            const servicioSeleccionado = form.querySelector('input[name="Servicio"]:checked');
+            const valorServicio = servicioSeleccionado ? servicioSeleccionado.value : '';
+            const cantidad = cantidadDesdeServicio(valorServicio);
 
-    async function manejarSubmitRegistro(event) {
-        event.preventDefault();
-        const form = event.target;
+            if (!cantidad) {
+                alert('Por favor seleccione una opción de servicio.');
+                return false;
+            }
 
-        const servicioSeleccionado = form.querySelector('input[name="Servicio"]:checked');
-        const valorServicio = servicioSeleccionado ? servicioSeleccionado.value : '';
-        const cantidad = cantidadDesdeServicio(valorServicio);
+            const claves = generarClaves(cantidad);
 
-        if (!cantidad) {
-            alert('Por favor seleccione una opción de servicio.');
+            const inpCantidad = document.getElementById('CantidadPsicotecnicos');
+            const inpClaves = document.getElementById('ClavesAcceso');
+            if (inpCantidad) inpCantidad.value = String(cantidad);
+            if (inpClaves) inpClaves.value = claves.join(' - ');
+            const emailInput = form.querySelector('input[name="Email"]');
+            const replyTo = document.getElementById('replyToEmail');
+            if (replyTo && emailInput) replyTo.value = emailInput.value;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    const gracias = document.getElementById('pantallaGraciasRegistro');
+                    if (gracias) gracias.classList.remove('hidden');
+                    form.reset();
+                    return true;
+                }
+
+                const data = await response.json().catch(() => ({}));
+                alert(data && data.error ? data.error : 'No se pudo enviar el formulario. Intente nuevamente.');
+            } catch (e) {
+                alert('Error de conexión. Por favor intente nuevamente.');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar y Registrar';
+                }
+            }
+
             return false;
         }
 
-        const claves = generarClaves(cantidad);
-
-        const inpCantidad = document.getElementById('CantidadPsicotecnicos');
-        const inpClaves = document.getElementById('ClavesAcceso');
-        if (inpCantidad) inpCantidad.value = String(cantidad);
-        if (inpClaves) inpClaves.value = claves.join(' - ');
-
-        const emailInput = form.querySelector('input[name="Email"]');
-        const replyTo = document.getElementById('replyToEmail');
-        if (replyTo && emailInput) replyTo.value = emailInput.value;
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
+        function volverAPantallaPrincipal() {
+            cerrarModal('modalDiagnostico');
+            const welcome = document.getElementById('welcomeSection');
+            if (welcome) welcome.scrollIntoView({ behavior: 'smooth' });
         }
 
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            });
+        async function validarAcceso() {
+            const codigo = prompt("Ingrese su código de acceso:");
+            const banner = document.getElementById('bannerValidando');
 
-            if (response.ok) {
-                form.classList.add('hidden');
-                const gracias = document.getElementById('pantallaGraciasRegistro');
-                if (gracias) gracias.classList.remove('hidden');
-                form.reset();
-                return true;
+            if (!codigo) {
+                if (banner) banner.classList.add('hidden');
+                return;
             }
 
-            const data = await response.json().catch(() => ({}));
-            alert(data && data.error ? data.error : 'No se pudo enviar el formulario. Intente nuevamente.');
-        } catch (e) {
-            alert('Error de conexión. Por favor intente nuevamente.');
-        } finally {
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Enviar y Registrar';
-            }
-        }
+            if (banner) banner.classList.remove('hidden');
 
-        return false;
-    }
+            const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwly4MK0HtTXBEarhB0SoUbF6nLj9pAIEVfGToqxLFRVckjFVaoM9ESpClfMs6oicQlfA/exec";
+            const url = WEBAPP_URL + "?codigo=" + encodeURIComponent(String(codigo).trim());
 
-    function volverAPantallaPrincipal() {
-        cerrarModal('modalDiagnostico');
-        const welcome = document.getElementById('welcomeSection');
-        if (welcome) welcome.scrollIntoView({ behavior: 'smooth' });
-    }
+            try {
+                const resp = await fetch(url, { method: "GET" });
+                const data = await resp.json().catch(() => ({}));
 
-    async function validarAcceso() {
-        const codigo = prompt("Ingrese su código de acceso:");
-        const banner = document.getElementById('bannerValidando');
-
-        if (!codigo) {
-            if (banner) banner.classList.add('hidden');
-            return;
-        }
-
-        if (banner) banner.classList.remove('hidden');
-
-        const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwly4MK0HtTXBEarhB0SoUbF6nLj9pAIEVfGToqxLFRVckjFVaoM9ESpClfMs6oicQlfA/exec";
-        const url = WEBAPP_URL + "?codigo=" + encodeURIComponent(String(codigo).trim());
-
-        try {
-            const resp = await fetch(url, { method: "GET" });
-            const data = await resp.json().catch(() => ({}));
-
-            if (resp.ok && data && data.valido === true) {
-                localStorage.setItem('empresaNombre', (data.empresa || '').trim());
-                window.location.href = "evaluados14.html";
-            } else {
+                if (resp.ok && data && data.valido === true) {
+                    localStorage.setItem('empresaNombre', (data.empresa || '').trim());
+                    window.location.href = "evaluados14.html";
+                } else {
+                    localStorage.removeItem('empresaNombre');
+                    alert((data && data.error) ? data.error : "Código incorrecto. Error de acceso.");
+                }
+            } catch (e) {
                 localStorage.removeItem('empresaNombre');
-                alert((data && data.error) ? data.error : "Código incorrecto. Error de acceso.");
-            }
-        } catch (e) {
-            localStorage.removeItem('empresaNombre');
-            alert("No se pudo verificar el código. Revise su conexión e intente nuevamente.");
-        } finally {
-            if (banner) banner.classList.add('hidden');
-        }
-    }
-
-    function abrirModal(id) {
-        const m = document.getElementById(id);
-        if (m) {
-            m.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-
-            if (id === 'modalDiagnostico') {
-                const form = document.getElementById('formRegistroEmpresa');
-                const gracias = document.getElementById('pantallaGraciasRegistro');
-                if (form) form.classList.remove('hidden');
-                if (gracias) gracias.classList.add('hidden');
+                alert("No se pudo verificar el código. Revise su conexión e intente nuevamente.");
+            } finally {
+                if (banner) banner.classList.add('hidden');
             }
         }
-    }
 
-    function cerrarModal(id) {
-        const m = document.getElementById(id);
-        if (m) {
-            m.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+        function abrirModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                m.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+
+                if (id === 'modalDiagnostico') {
+                    const form = document.getElementById('formRegistroEmpresa');
+                    const gracias = document.getElementById('pantallaGraciasRegistro');
+                    if (form) form.classList.remove('hidden');
+                    if (gracias) gracias.classList.add('hidden');
+                }
+            }
         }
-    }
 
-    window.onclick = function(event) {
-        if (event.target.classList.contains('fixed')) {
-            const modales = document.querySelectorAll('.fixed');
-            modales.forEach(m => m.classList.add('hidden'));
-            document.body.style.overflow = 'auto';
+        function cerrarModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                m.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
         }
-    }
-</script>
 
-
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                const modales = document.querySelectorAll('.fixed');
+                modales.forEach(m => m.classList.add('hidden'));
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
 
 </body>
 </html>
+
 
