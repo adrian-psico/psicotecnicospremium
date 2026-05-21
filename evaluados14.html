@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Ingreso de Evaluados - Psicotécnicos Premium</title>
+    <title>Ingreso de Evaluados - Psicotécnicos Premium 21/05</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -195,11 +195,17 @@ Se me informa que tengo derecho a solicitar una síntesis de los resultados de m
         data.append("Empresa", empresa);
 
         try {
-            const response = await fetch("https://formspree.io/f/xykbyppd", {
-                method: "POST",
-                body: data,
-                headers: { "Accept": "application/json" }
-            });
+const plain = Object.fromEntries(data.entries());
+
+const response = await fetch("https://formspree.io/f/xykbyppd", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    },
+    body: JSON.stringify(plain)
+});
+
 
             if (response.ok) {
                 document.getElementById("mensajeExito").classList.remove("hidden");
@@ -209,7 +215,7 @@ Se me informa que tengo derecho a solicitar una síntesis de los resultados de m
                     localStorage.setItem('evaluadoNombre', (nombre || '').trim());
 
                     window.location.href =
-                        "zeta15.html?nombre=" + encodeURIComponent(nombre) +
+                        "zeta12.html?nombre=" + encodeURIComponent(nombre) +
                         "&empresa=" + encodeURIComponent(empresa);
                 }, 2000);
 
