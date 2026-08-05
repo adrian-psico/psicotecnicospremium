@@ -50,7 +50,7 @@
         .disabled-field {
             background-color: #f3f4f6;
             background-color: #f4efe9;
-        .replica {
+        .replica { display: inline-block; white-space: nowrap;
             min-width: 120px;
             color: #6b7280;
             font-weight: 600;
@@ -275,7 +275,7 @@ camposR1.forEach((campo, index) => {
 /* ⭐ Actualizar SOLO la réplica correspondiente */
 function actualizarReplica(n) {
     const origen = document.getElementById(`r1_${n}`).value.trim();
-    const valor = origen ? origen + " :" : "";
+    const valor = origen ? origen + ":" : "";
 
     // Actualizar réplica visible (NO editable)
     document.getElementById(`r2_replica_${n}`).textContent = valor;
