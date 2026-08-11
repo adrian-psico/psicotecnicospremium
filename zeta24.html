@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Evaluación Zulliger - Psicotécnicos Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+<style>
+        :root {
+            --brand-primary: #134254;
+            --brand-primary-dark: #0f3442;
+            --brand-bg: #f4efe9;
+            --brand-card: #ffffff;
+            --brand-muted: #64748b;
+        }
+        html, body { background-color: #f4efe9 !important; margin: 0; min-height: 100%; }
+        body { -webkit-text-size-adjust: 100%; background-color: #f4efe9 !important; background-image: none !important; color: #172026; min-height: 100vh; }
+        .page-bg { background-color: #f4efe9 !important; background-image: none !important; }
+        .professional-card { background: #ffffff; border: 1px solid rgba(19, 66, 84, 0.12); box-shadow: 0 18px 45px rgba(15, 52, 66, 0.10); }
+        .glass-panel { background: #134254; box-shadow: 0 30px 80px rgba(15, 52, 66, 0.28); }
+        .btn-primary { background: var(--brand-primary); box-shadow: 0 16px 30px rgba(19, 66, 84, 0.25); }
+        .btn-primary:hover { background: var(--brand-primary-dark); }
+        @media (max-width: 640px) { body { align-items: flex-start; padding-top: env(safe-area-inset-top); } #test-container { margin-top: 0.75rem; margin-bottom: 1rem; } #nombreMostrado, #empresaMostrada { display: block !important; visibility: visible !important; } }
+    input[id^="r1_"] {
+        background-color: #f4efe9;
+    }
+
+
+    /* Campos de “Dónde lo ves” */
+    input[id^="r2_"] {
+        background-color: #f4efe9;
+    }
+
+    /* Campos de “Qué te dio la idea” */
+    input[id^="r3_"] {
+        background-color: #f4efe9;
+    }
+    .help-online-btn { margin-left: 0.75rem; padding: 0.35rem 0.7rem; border-radius: 9999px; background-color: #134254; color: #ffffff; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; transition: background-color 0.2s ease; }
+    .help-online-btn:hover { background-color: #0f3442; }
+    .help-online-banner { display: none; margin-top: 0.75rem; margin-bottom: 0.75rem; padding: 1rem; border-radius: 0.75rem; background-color: #b4bebf; color: #0f3442; border: 1px solid rgba(19, 66, 84, 0.2); font-weight: 700; text-align: center; }
+</style>
+
+
+    <style>
+        .lamina-img {
+            max-height: 400px;
+            box-shadow: 0 18px 45px rgba(15, 52, 66, 0.10);
+            border-radius: 12px;
+            margin: 0 auto;
+        }
+        .disabled-field {
+            background-color: #f3f4f6;
+            background-color: #f4efe9;
+        .replica { display: inline-block; white-space: nowrap;
+            min-width: 120px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="page-bg font-sans antialiased min-h-screen flex items-center justify-center p-4">
+
+    <div id="test-container" class="professional-card max-w-4xl w-full rounded-[2rem] overflow-hidden">
+
+
+<div class="bg-white py-3 text-center border-b border-[#134254]/10">
+    <span class="text-teal-900 font-bold italic tracking-tight">
+        Psicotécnicos Premium
+    </span>
+</div>
+
+
+
+       
+
+        <p id="nombreMostrado" class="text-center text-gray-700 text-sm mt-3 px-4 break-words min-h-[1.25rem]"></p>
+        <p id="empresaMostrada" class="text-center text-gray-600 text-sm mb-3 px-4 break-words min-h-[1.25rem]"></p>
+        <div class="glass-panel p-6 text-white text-center">
+
+
+    <span class="text-white font-light text-sm">
+        <u><strong>Consigna</strong></u> :
+        <span class="text-blue-100 font-light text-sm opacity-95">
+            Vas a ver una serie de láminas donde seguro vas a poder ver cosas en ellas.
+            Escribe todo lo que veas en la parte inferior de la hoja en función de las preguntas que allí aparecen
+        </span>
+    </span>
+</div>
+
+
+
+
+
+
+       
+     
+
+
+        <div class="p-8 md:p-12 bg-white">
+
+            <div class="mb-8" id="header-progreso">
+                <div class="flex justify-between text-xs font-bold text-teal-900 uppercase mb-2">
+                    <span id="progreso-texto">Lámina 1 de 3</span>
+                    <span id="porcentaje-texto">33%</span>
+                </div>
+
+
+
+<div class="w-full bg-[#f4efe9] rounded-full h-2">
+                    <div id="progreso-barra" class="h-2 rounded-full transition-all duration-500" style="width: 33%; background-color:#134254;"></div>
+
+
+
+                
+            </div>
+
+            <div id="content" class="space-y-8">
+
+                <div class="text-center">
+                    <img id="lamina-display" src="./zeta1.jpeg" alt="Test de Zulliger" class="lamina-img mb-6">
+                </div>
+
+                <!-- ⭐ 1. ¿Qué ves? (5 respuestas) -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                        1. ¿Qué ves en esta lámina? (3 respuestas como mínimo)
+                        <button type="button" class="help-online-btn" onclick="toggleAyudaOnline('help-online-banner-1')">Necesitas ayuda?</button>
+                    </label>
+                    <div id="help-online-banner-1" class="help-online-banner">Mensaje de ayuda</div>
+
+                    <div id="grupo-r1" class="space-y-3">
+                        <input id="r1_1" class="campo-r1 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all" placeholder="Respuesta 1">
+                        <input id="r1_2" class="campo-r1 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all" placeholder="Respuesta 2">
+                        <input id="r1_3" class="campo-r1 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all" placeholder="Respuesta 3">
+                        <input id="r1_4" class="campo-r1 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all" placeholder="Respuesta 4">
+                        <input id="r1_5" class="campo-r1 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all" placeholder="Respuesta 5">
+                    </div>
+                </div>
+
+                <!-- ⭐ 2. ¿Dónde lo ves? (réplica + campo real) -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                        2. ¿Dónde lo ves?
+                        <button type="button" class="help-online-btn" onclick="toggleAyudaOnline('help-online-banner-2')">Necesitas ayuda?</button>
+                    </label>
+                    <div id="help-online-banner-2" class="help-online-banner">Mensaje de ayuda</div>
+
+                    <div id="grupo-r2" class="space-y-3">
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_1" class="replica"></span>
+                            <input id="r2_1" class="campo-r2 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_2" class="replica"></span>
+                            <input id="r2_2" class="campo-r2 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_3" class="replica"></span>
+                            <input id="r2_3" class="campo-r2 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_4" class="replica"></span>
+                            <input id="r2_4" class="campo-r2 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r2_replica_5" class="replica"></span>
+                            <input id="r2_5" class="campo-r2 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ⭐ 3. ¿Qué te dio la idea? (réplica + campo real) -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                        3. ¿Qué te dio la idea?
+                        <button type="button" class="help-online-btn" onclick="toggleAyudaOnline('help-online-banner-3')">Necesitas ayuda?</button>
+                    </label>
+                    <div id="help-online-banner-3" class="help-online-banner">Mensaje de ayuda</div>
+
+                    <div id="grupo-r3" class="space-y-3">
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_1" class="replica"></span>
+                            <input id="r3_1" class="campo-r3 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_2" class="replica"></span>
+                            <input id="r3_2" class="campo-r3 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_3" class="replica"></span>
+                            <input id="r3_3" class="campo-r3 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_4" class="replica"></span>
+                            <input id="r3_4" class="campo-r3 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span id="r3_replica_5" class="replica"></span>
+                            <input id="r3_5" class="campo-r3 w-full p-3 border border-[#134254]/15 rounded-lg outline-none focus:ring-2 focus:ring-[#134254] transition-all disabled-field" disabled>
+                        </div>
+
+                    </div>
+                </div>
+
+
+<button id="btn-siguiente" onclick="gestionarSiguiente()"
+    class="btn-primary w-full text-white py-4 rounded-xl font-bold shadow-lg transform hover:scale-[1.01] transition-all focus:outline-none focus:ring-4 focus:ring-[#134254]/25 opacity-50"
+    style="background-color:#134254;"
+    onmouseover="this.style.backgroundColor='#0f3442'"
+    onmouseout="this.style.backgroundColor='#134254'"
+    disabled>
+    Confirmar y Continuar
+</button>
+
+
+
+                
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ⭐ Formulario oculto -->
+    <form id="hidden-form" action="https://formspree.io/f/xaqbvwzv" method="POST" style="display:none;">
+        <input type="hidden" name="evaluado" id="evaluado">
+        <input type="hidden" name="empresa" id="empresa">
+        <textarea name="respuestas_completas" id="final-data"></textarea>
+    </form>
+<script>
+function toggleAyudaOnline(bannerId) {
+    const bannerSeleccionado = document.getElementById(bannerId);
+    if (!bannerSeleccionado) return;
+    const estabaVisible = window.getComputedStyle(bannerSeleccionado).display !== 'none';
+    document.querySelectorAll('.help-online-banner').forEach(banner => banner.style.display = 'none');
+    bannerSeleccionado.style.display = estabaVisible ? 'none' : 'block';
+}
+/* ⭐ Nombre y empresa */
+const params = new URLSearchParams(window.location.search);
+const nombreEvaluado = params.get("nombre") || localStorage.getItem('evaluadoNombre');
+const empresaNombre = params.get("empresa") || localStorage.getItem('empresaNombre');
+
+const nombreLimpio = String(nombreEvaluado || '').trim();
+const empresaLimpia = String(empresaNombre || '').trim();
+document.getElementById("evaluado").value = nombreLimpio;
+document.getElementById("empresa").value = empresaLimpia;
+document.getElementById("nombreMostrado").textContent = nombreLimpio ? "Evaluando a : " + nombreLimpio : "Evaluando a : (no encontrado)";
+document.getElementById("empresaMostrada").textContent = empresaLimpia ? "Empresa : " + empresaLimpia : "Empresa : (no encontrada)";
+
+/* ⭐ Láminas */
+const laminas = [
+    { src: "./zeta1.jpeg", nombre: "Lámina I" },
+    { src: "./zeta2.jpeg", nombre: "Lámina II" },
+    { src: "./zeta3.jpeg", nombre: "Lámina III" }
+];
+
+let pasoActual = 0;
+let reporteFinal = "";
+
+/* ⭐ Tiempo por lámina */
+let tiempoInicio = Date.now();
+let tiemposLaminas = [];
+
+/* ⭐ Campos */
+const camposR1 = document.querySelectorAll(".campo-r1");
+const camposR2 = document.querySelectorAll(".campo-r2");
+const camposR3 = document.querySelectorAll(".campo-r3");
+const btn = document.getElementById("btn-siguiente");
+
+/* ⭐ Listener por índice */
+camposR1.forEach((campo, index) => {
+    campo.addEventListener("input", () => {
+        verificarR1();
+        actualizarReplica(index + 1);
+    });
+});
+
+/* ⭐ Actualizar SOLO la réplica correspondiente */
+function actualizarReplica(n) {
+    const origen = document.getElementById(`r1_${n}`).value.trim();
+    const valor = origen ? origen + ":" : "";
+
+    // Actualizar réplica visible (NO editable)
+    document.getElementById(`r2_replica_${n}`).textContent = valor;
+    document.getElementById(`r3_replica_${n}`).textContent = valor;
+
+    // Limpiar campo real editable
+    document.getElementById(`r2_${n}`).value = "";
+    document.getElementById(`r3_${n}`).value = "";
+}
+
+/* ⭐ Habilitar todo con 3 respuestas */
+function verificarR1() {
+    const completas = [...camposR1].filter(c => c.value.trim() !== "").length;
+
+    if (completas >= 3) {
+        camposR2.forEach(c => { c.disabled = false; c.classList.remove("disabled-field"); });
+        camposR3.forEach(c => { c.disabled = false; c.classList.remove("disabled-field"); });
+
+        btn.disabled = false;
+        btn.classList.remove("opacity-50");
+    } else {
+        camposR2.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+        camposR3.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+
+        btn.disabled = true;
+        btn.classList.add("opacity-50");
+    }
+}
+
+/* ⭐ Guardar respuestas */
+function gestionarSiguiente() {
+
+ /* ⏱ Registrar tiempo */
+let tiempoFin = Date.now();
+let totalSegundos = Math.floor((tiempoFin - tiempoInicio) / 1000);
+let minutos = Math.floor(totalSegundos / 60);
+let segundos = totalSegundos % 60;
+
+let tiempoFormateado = `${minutos} min ${segundos} seg`;
+
+tiemposLaminas.push(tiempoFormateado);
+
+
+
+
+    const r1 = [...camposR1].map(c => c.value.trim());
+
+    // SOLO lo que escribe el evaluado después de ":"
+    const r2_real = [...Array(5)].map((_,i)=>document.getElementById(`r2_${i+1}`).value.trim());
+    const r3_real = [...Array(5)].map((_,i)=>document.getElementById(`r3_${i+1}`).value.trim());
+
+    // Validar solo que haya 3 respuestas en r1
+    const completasR1 = r1.filter(v => v !== "").length;
+
+    if (completasR1 < 3) {
+        alert("Debes completar al menos 3 respuestas en esta lámina.");
+        return;
+    }
+
+
+// Validar solo las respuestas reales correspondientes a r1 completadas
+for (let i = 0; i < 5; i++) {
+    if (r1[i] !== "" && (r2_real[i] === "" || r3_real[i] === "")) {
+        alert("Debes completar lo que escribes después de ':' en las respuestas que hayas dado.");
+        return;
+    }
+}
+
+
+    
+
+    reporteFinal += `--- ${laminas[pasoActual].nombre} ---\n`;
+    
+    reporteFinal += `Tiempo: ${tiempoFormateado}\n\n`;
+
+
+    for (let i = 0; i < 5; i++) {
+        reporteFinal += `Respuesta ${i+1}:\n`;
+        reporteFinal += `¿Qué ves?: ${r1[i]}\n`;
+        reporteFinal += `¿Dónde lo ves?: ${r2_real[i]}\n`;
+        reporteFinal += `¿Qué te dio la idea?: ${r3_real[i]}\n\n`;
+    }
+
+    if (pasoActual < laminas.length - 1) {
+        pasoActual++;
+        actualizarInterfaz();
+    } else {
+        enviarResultados();
+    }
+}
+
+/* ⭐ Cambiar lámina */
+function actualizarInterfaz() {
+    document.getElementById('lamina-display').src = laminas[pasoActual].src;
+
+    const porcentaje = ((pasoActual + 1) / laminas.length) * 100;
+    document.getElementById('progreso-texto').innerText = `Lámina ${pasoActual + 1} de 3`;
+    document.getElementById('progreso-barra').style.width = `${porcentaje}%`;
+
+    [...camposR1, ...camposR2, ...camposR3].forEach(c => c.value = "");
+
+    // Limpiar réplicas
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById(`r2_replica_${i}`).textContent = "";
+        document.getElementById(`r3_replica_${i}`).textContent = "";
+    }
+
+    camposR2.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+    camposR3.forEach(c => { c.disabled = true; c.classList.add("disabled-field"); });
+
+    btn.disabled = true;
+    btn.classList.add("opacity-50");
+
+    /* Reiniciar tiempo */
+    tiempoInicio = Date.now();
+
+    window.scrollTo(0, 0);
+}
+
+/* ⭐ Enviar */
+function enviarResultados() {
+    const btn = document.getElementById('btn-siguiente');
+    btn.disabled = true;
+    btn.innerText = "Enviando respuestas...";
+
+    document.getElementById('final-data').value = reporteFinal;
+    document.getElementById('empresa').value = empresaNombre || '';
+    
+
+    const form = document.getElementById('hidden-form');
+
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        mostrarExito();
+    }).catch(error => {
+        alert("Error al enviar. Intente nuevamente.");
+        btn.disabled = false;
+        btn.innerText = "Confirmar y Continuar";
+    });
+}
+
+/* ⭐ Redirigir */
+function mostrarExito() {
+    const nombre = document.getElementById("evaluado").value;
+
+    setTimeout(() => {
+        window.location.href =
+            "bender15.html?nombre=" + encodeURIComponent(nombre) +
+            "&empresa=" + encodeURIComponent(empresaNombre || '');
+    }, 800);
+}
+</script>
+
+</body>
+</html>
