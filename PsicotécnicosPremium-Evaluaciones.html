@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Evaluaciones psicotécnicas premium para organizaciones que buscan decisiones de talento más precisas, estratégicas y confiables.">
+    <title>Psicotécnicos Premium | Evaluación Estratégica</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --brand-primary: #134254;
+            --brand-primary-dark: #0f3442;
+            --brand-bg: #f4efe9;
+            --brand-card: #ffffff;
+            --brand-muted: #64748b;
+        }
+
+        html,
+        body {
+            background-color: #f4efe9 !important;
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            background-color: #f4efe9 !important;
+            background-image: none !important;
+            color: #172026;
+            min-height: 100vh;
+        }
+
+        .page-bg {
+            background-color: #f4efe9 !important;
+            background-image: none !important;
+        }
+
+        .glass-panel {
+            background: #134254;
+            box-shadow: 0 30px 80px rgba(15, 52, 66, 0.28);
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 72px;
+            height: 3px;
+            margin: 18px auto 0;
+            border-radius: 999px;
+            background: var(--brand-primary);
+        }
+
+        .professional-card {
+            background: #ffffff;
+            border: 1px solid rgba(19, 66, 84, 0.12);
+            box-shadow: 0 18px 45px rgba(15, 52, 66, 0.10);
+            transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+        }
+
+        .professional-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 60px rgba(15, 52, 66, 0.15);
+            border-color: rgba(19, 66, 84, 0.22);
+        }
+
+        .btn-primary {
+            background: var(--brand-primary);
+            box-shadow: 0 16px 30px rgba(19, 66, 84, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-primary-dark);
+        }
+    </style>
+</head>
+
+<body class="page-bg font-sans antialiased relative overflow-x-hidden">
+    <!-- HERO PRINCIPAL -->
+    <main class="page-bg min-h-screen flex flex-col items-center justify-center px-4 py-16 text-center">
+        <section class="glass-panel max-w-3xl w-full rounded-[2rem] border border-white/15 px-6 py-10 sm:px-10 sm:py-14 md:px-14 md:py-16 text-white">
+            <p class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-blue-100">Evaluación estratégica</p>
+
+            <h1 class="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold italic tracking-tight">Psicotécnicos Premium</h1>
+
+            <h2 class="mt-4 text-lg sm:text-xl md:text-2xl text-blue-100 font-light">Fuiste convocado a una evaluación ?</h2>
+
+            <p class="mx-auto mt-7 max-w-2xl text-base sm:text-lg md:text-xl text-gray-100 font-light leading-relaxed">Si recibiste este link más tu código de acceso de tu empresa o consultora, estás en el lugar correcto para realizar tu psicotécnico en línea. Recuerda contar con una conexión estable, espacio tranquilo, lápiz negro, hojas blancas y cámara para subir las fotos de tus gráficos.</p>
+        </section>
+            <div class="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="abrirModal('modalAcceso')" class="btn-primary w-full sm:w-auto text-white px-8 sm:px-10 py-3.5 rounded-full text-base sm:text-lg font-bold transition-all shadow-lg transform hover:scale-105">
+                    Comenzar evaluación
+                </button>
+            </div>
+    </main>
+    <!-- MODAL ACCESO -->
+    <div id="modalAcceso" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="max-w-md w-full glass-panel shadow-2xl rounded-[2rem] overflow-hidden border border-white/15 text-white">
+            <div class="bg-white/10 py-3 text-center border-b border-white/15">
+                <span class="text-blue-100 font-bold italic tracking-tight">Psicotécnicos Premium</span>
+            </div>
+            <div class="px-6 pt-7 pb-4 sm:px-8 sm:pt-8 text-white text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold italic tracking-tight">Ingreso a evaluación</h2>
+                <p class="text-sm sm:text-base text-blue-100 mt-2 font-light">Ingrese su código de acceso</p>
+            </div>
+            <div class="px-6 pb-7 sm:px-8 sm:pb-8 space-y-4">
+                <div><label for="codigoAccesoInput" class="block text-sm font-semibold text-blue-100 mb-2">Código</label><input id="codigoAccesoInput" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Ej: 123456" class="w-full p-3 text-base text-[#172026] bg-white border border-white/20 rounded-xl outline-none focus:ring-2 focus:ring-blue-100"></div>
+                <p id="mensajeErrorAcceso" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">Código incorrecto. Verifique e intente nuevamente.</p>
+                <div class="flex flex-col sm:flex-row gap-3 pt-2"><button type="button" onclick="enviarCodigoDesdeModal()" class="w-full bg-white/10 hover:bg-white/15 text-white py-3 rounded-full font-bold border border-white/20 shadow-lg transition-all">Ingresar</button><button type="button" onclick="cerrarModalAcceso()" class="w-full bg-white text-[#134254] py-3 rounded-full font-bold border border-white/20">Cancelar</button></div>
+            </div></div></div>
+    <!-- BANNER VALIDANDO -->
+    <div id="bannerValidando" class="hidden fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"><div class="w-full max-w-md glass-panel rounded-[2rem] shadow-2xl border border-white/15 overflow-hidden text-white"><div class="bg-white/10 text-center px-6 py-4 border-b border-white/15"><span class="font-bold italic tracking text-blue-100">Validando acceso</span></div><div class="px-6 py-7 flex items-center gap-4"><div class="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin"></div><div class="text-white"><p class="font-bold italic tracking-tight">Aguarde por favor, estamos validando su código</p><p class="text-sm text-blue-100 mt-1 font-light">Esto puede demorar unos segundos.</p></div></div></div></div>
+    <script>
+        function abrirModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; if (id === 'modalAcceso') { const input = document.getElementById('codigoAccesoInput'); const error = document.getElementById('mensajeErrorAcceso'); if (error) error.classList.add('hidden'); setTimeout(() => { if (input) input.focus(); }, 150); } } }
+        function cerrarModal(id) { const m = document.getElementById(id); if (m) { m.classList.add('hidden'); document.body.style.overflow = 'auto'; } }
+        function cerrarModalAcceso() { const modal = document.getElementById('modalAcceso'); const input = document.getElementById('codigoAccesoInput'); const error = document.getElementById('mensajeErrorAcceso'); if (modal) modal.classList.add('hidden'); if (input) input.value = ''; if (error) error.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+        async function enviarCodigoDesdeModal() { const input = document.getElementById('codigoAccesoInput'); const error = document.getElementById('mensajeErrorAcceso'); const banner = document.getElementById('bannerValidando'); const codigo = input ? input.value.trim() : ''; if (!codigo) { if (error) { error.textContent = 'Por favor ingrese su código de acceso.'; error.classList.remove('hidden'); } if (input) input.focus(); return; } if (error) error.classList.add('hidden'); cerrarModal('modalAcceso'); if (banner) banner.classList.remove('hidden'); const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwly4MK0HtTXBEarhB0SoUbF6nLj9pAIEVfGToqxLFRVckjFVaoM9ESpClfMs6oicQlfA/exec"; const url = WEBAPP_URL + "?codigo=" + encodeURIComponent(codigo); try { const resp = await fetch(url, { method: "GET" }); const data = await resp.json().catch(() => ({})); if (resp.ok && data && data.valido === true) { localStorage.setItem('empresaNombre', (data.empresa || '').trim()); window.location.href = "evaluados15.html"; } else { localStorage.removeItem('empresaNombre'); const modal = document.getElementById('modalAcceso'); if (modal) modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; if (error) { error.textContent = (data && data.error) ? data.error : 'Código incorrecto. Verifique e intente nuevamente.'; error.classList.remove('hidden'); } if (input) { input.focus(); input.select(); } } } catch (e) { localStorage.removeItem('empresaNombre'); const modal = document.getElementById('modalAcceso'); if (modal) modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; if (error) { error.textContent = 'No se pudo verificar el código. Revise su conexión e intente nuevamente.'; error.classList.remove('hidden'); } if (input) input.focus(); } finally { if (banner) banner.classList.add('hidden'); } }
+        window.onclick = function(event) { if (event.target.classList.contains('fixed')) { document.querySelectorAll('.fixed').forEach(m => m.classList.add('hidden')); document.body.style.overflow = 'auto'; } }
+        document.addEventListener('DOMContentLoaded', function () { const inputCodigo = document.getElementById('codigoAccesoInput'); if (inputCodigo) { inputCodigo.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); enviarCodigoDesdeModal(); } }); } });
+    </script>
+
+ 
+
+
+  
+</body>
+</html>
+
+
