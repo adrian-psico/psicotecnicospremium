@@ -43,7 +43,7 @@
             </span>
         </div>
         <div class="text-center bg-white py-4 px-6 border-b border-[#134254]/10">
-            <button id="btn-ayuda" onclick="toggleAyuda()" class="btn-primary text-white py-3 px-6 rounded-xl font-bold shadow-lg transition-all focus:outline-none" style="background-color:#134254;" onmouseover="this.style.backgroundColor='#0f3442'" onmouseout="this.style.backgroundColor='#134254'">Necesitás ayuda?</button>
+            <button id="btn-ayuda" onclick="toggleAyuda()" class="btn-primary text-white py-3 px-6 rounded-xl font-light shadow-lg transition-all focus:outline-none" style="background-color:#134254;" onmouseover="this.style.backgroundColor='#134254'" onmouseout="this.style.backgroundColor='#0f3442'">Necesitás ayuda?</button>
             <div id="banner-ayuda" class="hidden mt-4 mx-auto max-w-xl rounded-2xl bg-[#b4bebf] border border-[#134254]/20 text-[#134254] font-semibold px-5 py-4">Mensaje de ayuda</div>
         </div>
 
@@ -215,7 +215,7 @@
         function redirigirSiguiente() {
             setTimeout(() => {
                 window.location.href =
-                    "graficos14.html?nombre=" + encodeURIComponent(nombreEvaluado) +
+                    "graficos15.html?nombre=" + encodeURIComponent(nombreEvaluado) +
                     "&empresa=" + encodeURIComponent(empresaNombre || "");
             }, 800);
         }
