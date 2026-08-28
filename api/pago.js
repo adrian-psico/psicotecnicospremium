@@ -26,9 +26,9 @@ export default async function handler(req, res) {
     const opcion = bodyData?.opcion;
 
     const monto =
-      opcion === "Unico" ? 60000 :
-      opcion === "Pack 5" ? 250000 :
-      opcion === "Pack 10" ? 400000 : 0;
+      opcion === "Unico" ? 10 :
+      opcion === "Pack 5" ? 20 :
+      opcion === "Pack 10" ? 30 : 0;
 
     if (!monto) {
       return res.status(400).json({ error: "Opción de servicio inválida: " + opcion });
