@@ -88,7 +88,7 @@ async function manejarSubmitRegistro(event) {
   let preferenceId = null;
 
   try {
-    const respuesta = await fetch("https://TU-APP.vercel.app/api/pago", {
+    const respuesta = await fetch("https://psicotecnicospremium.vercel.app/api/pago", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ opcion: valorServicio })
@@ -105,7 +105,7 @@ async function manejarSubmitRegistro(event) {
   }
 
   // 5) Abrir Mercado Pago Checkout
-  const mp = new MercadoPago("TU_PUBLIC_KEY", { locale: "es-AR" });
+  const mp = new MercadoPago("TEST-24f0f729-ca07-4332-bace-36ad2fcec4ae", { locale: "es-AR" });
   mp.checkout({
     preference: { id: preferenceId },
     autoOpen: true,
@@ -120,7 +120,7 @@ async function manejarSubmitRegistro(event) {
 ------------------------------ */
 async function esperarConfirmacion(preferenceId, form, submitBtn, textoOriginal) {
   const intervalo = setInterval(async () => {
-    const r = await fetch(`https://TU-APP.vercel.app/api/estado?pref=${preferenceId}`);
+    const r = await fetch(`https://psicotecnicospremium.vercel.app/api/estado?pref=${preferenceId}`);
     const estado = await r.json();
 
     if (estado.status === "approved") {
