@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Registro de Empresa - Psicotécnicos Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SDK v2 Mercado Pago -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <style>
+      :root { --brand-primary:#134254; --brand-primary-dark:#0f3442; --brand-bg:#f4efe9; --brand-card:#ffffff; --brand-muted:#64748b }
+      html, body { background-color:#f4efe9!important; margin:0; min-height:100% }
+      body { background-color:#f4efe9!important; color:#172026; min-height:100vh }
+      .hidden { display:none!important }
+      input, select, textarea, button { font-size:16px }
+      select option[disabled] { color:#9ca3af }
+      select option:not([disabled]) { color:#000 }
+      .page-bg { background-color:#f4efe9!important; background-image:none!important }
+      .brand-shell { background:#ffffff; border:1px solid rgba(19,66,84,.12); box-shadow:0 30px 80px rgba(15,52,66,.18) }
+      .brand-hero { background:#134254; color:#ffffff; box-shadow:0 18px 45px rgba(15,52,66,.18) }
+      .brand-note { background:#f4efe9; border:1px solid rgba(19,66,84,.12); color:#334155 }
+      .brand-input { border:1px solid rgba(19,66,84,.18); background:#ffffff; color:#172026 }
+      .brand-input:focus { outline:none; box-shadow:0 0 0 4px rgba(19,66,84,.18); border-color:#134254 }
+      .brand-option { border:1px solid rgba(19,66,84,.14); background:#ffffff; transition:background-color 180ms ease,border-color 180ms ease,box-shadow 180ms ease }
+      .brand-option:hover { background:rgba(19,66,84,.05); border-color:rgba(19,66,84,.25) }
+      .btn-primary { background:#134254; box-shadow:0 16px 30px rgba(19,66,84,.25) }
+      .btn-primary:hover { background:#0f3442 }
+      .btn-secondary { background:#e7dfd5; color:#134254 }
+      .btn-secondary:hover { background:#ddd2c6 }
+      .pantalla-gracias-full { position:fixed; inset:0; z-index:9999; min-height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; background:#f4efe9; padding:24px }
+      .pantalla-gracias-card { width:100%; max-width:640px; background:#ffffff; border:1px solid rgba(19,66,84,.12); box-shadow:0 30px 80px rgba(15,52,66,.18); border-radius:2rem; padding:40px 28px; text-align:center }
+      .pantalla-gracias-full.hidden { display:none!important }
+    </style>
+</head>
+<body class="page-bg font-sans antialiased min-h-screen flex items-center justify-center p-4">
+    <main class="brand-shell max-w-2xl w-full rounded-[2rem] overflow-hidden">
+        <div class="brand-hero m-4 sm:m-6 p-5 sm:p-7 text-white text-center rounded-[2rem]">
+            <p class="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-base font-bold italic tracking-tight text-white">Descripción de planes</p>
+            <h1 class="mt-4 text-2xl sm:text-3xl font-bold italic tracking-tight">Psicotécnicos Premium</h1>
+            <p class="mt-3 text-sm sm:text-base text-blue-100 font-light">Elija el plan ideal para su necesidad</p>
+        </div>
+
+        <section class="px-4 sm:px-6 md:px-8 pb-2">
+            <div class="brand-note rounded-[2rem] p-5 sm:p-6 text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold italic tracking-tight text-teal-950">Planes y Accesos Corporativos</h2>
+                <p class="mt-3 text-sm sm:text-base text-slate-600">Soluciones ágiles de evaluación psicológica para potenciar tus procesos de selección. Registra tu empresa o adquiere créditos según tus necesidades.</p>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <label class="brand-option rounded-2xl p-5 flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <h3 class="text-lg font-bold text-teal-950">Psicotécnico Individual</h3>
+                            <p class="mt-1 text-sm italic text-slate-500">1 Evaluación</p>
+                            <p class="mt-4 text-sm text-slate-700">Ideal para búsquedas puntuales, reemplazos urgentes o perfiles ejecutivos clave.</p>
+                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                                <li>• Evaluación 100% digital y estandarizada</li>
+                                <li>• Medición de tiempos y respuestas</li>
+                                <li>• Módulo para fotos de gráficos</li>
+                                <li>• Informe ejecutivo listo para descargar</li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 flex items-center rounded-xl border border-[#134254]/20 bg-white px-3 py-3">
+                            <input type="radio" name="Servicio" value="Unico" form="formRegistroEmpresa" required class="w-4 h-4 accent-[#134254] shrink-0">
+                            <span class="ml-2 text-xs sm:text-sm font-medium text-teal-950 leading-tight">Psicotécnico único $60.000</span>
+                        </div>
+                    </label>
+
+                    <label class="brand-option rounded-2xl p-5 flex flex-col justify-between cursor-pointer border-[#134254] shadow-lg">
+                        <div>
+                            <p class="inline-flex items-center rounded-full bg-[#134254] px-3 py-1 text-xs font-bold text-white">⭐ Más Popular</p>
+                            <h3 class="mt-3 text-lg font-bold text-teal-950">Pack PYME</h3>
+                            <p class="mt-1 text-sm italic text-slate-500">5 Evaluaciones</p>
+                            <p class="mt-4 text-sm text-slate-700">Ideal para equipos con procesos de selección activos o búsquedas recurrentes.</p>
+                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                                <li>• Incluye todo lo del plan individual</li>
+                                <li>• <strong>Descuento por volumen</strong></li>
+                                <li>• Panel de gestión para enviar accesos</li>
+                                <li>• Tu compra no tiene vencimiento</li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 flex items-center rounded-xl border border-[#134254]/20 bg-white px-3 py-3">
+                            <input type="radio" name="Servicio" value="Pack 5" form="formRegistroEmpresa" class="w-4 h-4 accent-[#134254] shrink-0">
+                            <span class="ml-2 text-xs sm:text-sm font-medium text-teal-950 leading-tight">Pack 5 Psicotécnicos $250.000</span>
+                        </div>
+                    </label>
+
+                    <label class="brand-option rounded-2xl p-5 flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <h3 class="text-lg font-bold text-teal-950">Pack Corporativo</h3>
+                            <p class="mt-1 text-sm italic text-slate-500">10 Evaluaciones</p>
+                            <p class="mt-4 text-sm text-slate-700">Ideal para consultoras de RRHH y empresas con alto volumen de contratación.</p>
+                            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                                <li>• Incluye todo lo del Pack Pyme</li>
+                                <li>• <strong>Máximo ahorro por evaluación</strong></li>
+                                <li>• Prioridad en generación de reportes</li>
+                                <li>• Administración centralizada de candidatos</li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 flex items-center rounded-xl border border-[#134254]/20 bg-white px-3 py-3">
+                            <input type="radio" name="Servicio" value="Pack 10" form="formRegistroEmpresa" class="w-4 h-4 accent-[#134254] shrink-0">
+                            <span class="ml-2 text-xs sm:text-sm font-medium text-teal-950 leading-tight">Pack 10 Psicotécnicos $400.000</span>
+                        </div>
+                    </label>
+                </div>
+                <p class="mt-6 text-sm text-slate-700"><strong>¿Cómo funciona?</strong> Al comprar cualquiera de los packs, recibirás códigos o accesos directos para enviar a tus candidatos con información clara para que puedan realizar la prueba sin inconvenientes.</p>
+            </div>
+        </section>
+
+        <section class="p-4 sm:p-6 md:p-8">
+            <form id="formRegistroEmpresa" action="https://formspree.io/f/xeernyaa" method="POST" class="space-y-4 text-left" onsubmit="return manejarSubmitRegistro(event)">
+                <input type="hidden" name="CantidadPsicotecnicos" id="CantidadPsicotecnicos">
+                <input type="hidden" name="ClavesAcceso" id="ClavesAcceso">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="brand-hero md:col-span-2 mt-0 mb-4 p-5 sm:p-7 text-white text-center rounded-[2rem]">
+                        <h2 class="text-2xl sm:text-3xl font-bold italic tracking-tight">Registro de Empresas</h2>
+                        <p class="mt-3 text-sm sm:text-base text-blue-100 font-light">Complete los datos para comenzar el proceso de pago</p>
+                    </div>
+                    <input type="text" name="Empresa" placeholder="Empresa" required class="brand-input w-full p-3 text-base rounded-xl">
+                    <input type="text" name="CUIT" placeholder="CUIT" required class="brand-input w-full p-3 text-base rounded-xl">
+                    <input type="text" name="Direccion" placeholder="Dirección" required class="brand-input w-full p-3 text-base rounded-xl md:col-span-2">
+                    <input type="email" name="email" placeholder="Mail" required class="brand-input w-full p-3 text-base rounded-xl">
+                    <input type="tel" name="Telefono" placeholder="Teléfono" required class="brand-input w-full p-3 text-base rounded-xl">
+                    <input type="text" name="Representante" placeholder="Representante" required class="brand-input w-full p-3 text-base rounded-xl">
+                    <input type="text" name="Cargo" placeholder="Cargo" required class="brand-input w-full p-3 text-base rounded-xl">
+                    <select name="CondicionIVA" required class="brand-input w-full p-3 text-base rounded-xl text-gray-400 md:col-span-2">
+                        <option value="" disabled selected>Condición de IVA</option>
+                        <option value="Consumidor Final">1. Consumidor Final</option>
+                        <option value="Monotributo">2. Monotributo</option>
+                        <option value="Responsable Inscripto">3. Responsable Inscripto</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary w-full text-white py-3 rounded-xl font-bold transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#134254]/25">Terminar y Pagar</button>
+                <a href="psico116r.html" class="btn-secondary block text-center w-full mt-3 py-3 rounded-xl font-bold transition-all">Volver</a>
+            </form>
+
+            <div id="pantallaGraciasRegistro" class="pantalla-gracias-full hidden">
+                <div class="pantalla-gracias-card">
+                <h2 class="text-2xl font-bold text-teal-950">¡Gracias por registrarse!</h2>
+                <p class="mt-3 text-gray-700">En breve van a recibir por mail toda la información, incluyendo las claves de acceso generadas.</p>
+                <a href="index.html" class="mt-6 block w-full btn-primary text-white py-3 rounded-xl font-bold shadow-lg">Volver a la pantalla principal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    function generarClave6() {
+      return String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+    }
+
+    function generarClaves(cantidad) {
+      const set = new Set();
+      while (set.size < cantidad) set.add(generarClave6());
+      return Array.from(set);
+    }
+
+    function cantidadDesdeServicio(valorServicio) {
+      if (valorServicio === 'Unico') return 1;
+      if (valorServicio === 'Pack 5') return 5;
+      if (valorServicio === 'Pack 10') return 10;
+      return 0;
+    }
+
+    async function manejarSubmitRegistro(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      // 1) Detectar servicio elegido
+      const servicioSeleccionado =
+        document.querySelector('input[name="Servicio"][form="formRegistroEmpresa"]:checked') ||
+        form.querySelector('input[name="Servicio"]:checked');
+
+      if (!servicioSeleccionado) {
+        alert("Por favor seleccione una opción de servicio.");
+        return false;
+      }
+
+      const valorServicio = servicioSeleccionado.value;
+      const cantidad = cantidadDesdeServicio(valorServicio);
+
+      // 2) Generar claves
+      const claves = generarClaves(cantidad);
+      document.getElementById('CantidadPsicotecnicos').value = String(cantidad);
+      document.getElementById('ClavesAcceso').value = claves.join(' - ');
+      const datosRegistroPendiente = JSON.stringify(Object.fromEntries(new FormData(form).entries()));
+      sessionStorage.setItem("registroEmpresaPendiente", datosRegistroPendiente);
+      localStorage.setItem("registroEmpresaPendiente", datosRegistroPendiente);
+
+      // 3) Desactivar botón mientras procesa
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const textoOriginal = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Procesando pago...";
+
+// 4) Crear preferencia en la API de Vercel
+      try {
+        const respuesta = await fetch("https://psicotecnicospremium.vercel.app/api/pago", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ opcion: valorServicio })
+        });
+
+        // Intentar leer la respuesta en texto para ver qué devuelve Vercel
+        const textoRespuesta = await respuesta.text();
+        let data;
+
+        try {
+          data = JSON.parse(textoRespuesta);
+        } catch (e) {
+          alert("La API respondió con HTML o texto plano (no JSON):\n" + textoRespuesta.substring(0, 300));
+          submitBtn.disabled = false;
+          submitBtn.textContent = textoOriginal;
+          return;
+        }
+
+        if (!respuesta.ok) {
+          alert("Error " + respuesta.status + " desde Vercel:\n" + JSON.stringify(data));
+          submitBtn.disabled = false;
+          submitBtn.textContent = textoOriginal;
+          return;
+        }
+
+        // 5) Redirigir a Mercado Pago
+        const targetUrl = data.sandbox_init_point || data.init_point;
+
+        if (targetUrl) {
+          window.location.href = targetUrl;
+        } else {
+          alert("Respuesta recibida pero sin URL de pago:\n" + JSON.stringify(data));
+          submitBtn.disabled = false;
+          submitBtn.textContent = textoOriginal;
+        }
+
+      } catch (e) {
+        console.error("Error al procesar pago:", e);
+        alert("Error de red/JS al conectar:\n" + e.message);
+        submitBtn.disabled = false;
+        submitBtn.textContent = textoOriginal;
+      }
+
+      
+      return false;
+    }
+    async function procesarRegresoDelPago() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("resultado") !== "success" || params.get("status") !== "approved") return;
+      const datosGuardados = sessionStorage.getItem("registroEmpresaPendiente") || localStorage.getItem("registroEmpresaPendiente");
+      if (!datosGuardados) { alert("No se encontraron los datos del registro."); return; }
+      try {
+        const datos = JSON.parse(datosGuardados);
+        const formData = new FormData();
+        Object.entries(datos).forEach(([campo, valor]) => formData.append(campo, valor));
+        formData.append("payment_id", params.get("payment_id") || params.get("collection_id") || "");
+        formData.append("payment_status", params.get("status") || "");
+        const respuestaFormspree = await fetch("https://formspree.io/f/xeernyaa", { method: "POST", body: formData, headers: { Accept: "application/json" } });
+        if (!respuestaFormspree.ok) throw new Error("Formspree rechazó el envío");
+        sessionStorage.removeItem("registroEmpresaPendiente");
+        localStorage.removeItem("registroEmpresaPendiente");
+        document.querySelector("main").classList.add("hidden");
+        document.body.classList.remove("items-center", "justify-center", "p-4");
+        document.getElementById("pantallaGraciasRegistro").classList.remove("hidden");
+        document.getElementById("pantallaGraciasRegistro").classList.remove("hidden");
+        history.replaceState({}, document.title, window.location.pathname);
+      } catch (error) {
+        console.error(error);
+        alert("El pago fue aprobado, pero no se pudo completar el envío del registro.");
+      }
+    }
+    document.addEventListener("DOMContentLoaded", procesarRegresoDelPago);
+    </script>
+</body>
+</html>
