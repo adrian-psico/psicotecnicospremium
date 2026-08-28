@@ -47,9 +47,9 @@ export default async function handler(req, res) {
           }
         ],
         back_urls: {
-          success: "https://psicotecnicospremium.vercel.app/registrovercel8.html?resultado=success",
-          failure: "https://psicotecnicospremium.vercel.app/registrovercel8.html?resultado=failure",
-          pending: "https://psicotecnicospremium.vercel.app/registrovercel8.html?resultado=pending"
+          success: "https://psicotecnicospremium.vercel.app/registrovercel9.html?resultado=success",
+          failure: "https://psicotecnicospremium.vercel.app/registrovercel9.html?resultado=failure",
+          pending: "https://psicotecnicospremium.vercel.app/registrovercel9.html?resultado=pending"
         },
         auto_return: "approved"
       }
