@@ -1,7 +1,7 @@
 import mercadopago from "mercadopago";
 
 export default async function handler(req, res) {
-  // 1. Cabeceras CORS
+  // 1. Permisos CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -10,19 +10,19 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
-    // 2. Obtener Token
+    // 2. Token de Mercado Pago
     const token = process.env.MERCADOPAGO_ACCESS_TOKEN || process.env.MP_TOKEN;
 
     if (!token) {
-      return res.status(500).json({ error: "Falta configurar la variable MERCADOPAGO_ACCESS_TOKEN en Vercel." });
+      return res.status(500).json({ error: "Falta la variable MERCADOPAGO_ACCESS_TOKEN en Vercel." });
     }
 
-    // 3. Configurar SDK (versión 1.x)
+    // 3. Configuración para versión v1.x
     mercadopago.configure({
       access_token: token
     });
 
-    // 4. Leer datos recibidos del HTML
+    // 4. Procesar la opción enviada desde registrovercel4.html
     const bodyData = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
     const opcion = bodyData?.opcion;
 
@@ -32,10 +32,10 @@ export default async function handler(req, res) {
       opcion === "Pack 10" ? 400000 : 0;
 
     if (!monto) {
-      return res.status(400).json({ error: "Opción de servicio inválida o no especificada." });
+      return res.status(400).json({ error: "Opción de servicio no válida: " + opcion });
     }
 
-    // 5. Crear preferencia de pago
+    // 5. Crear la preferencia de pago
     const preference = {
       items: [
         {
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
 
     const response = await mercadopago.preferences.create(preference);
 
-    // 6. Responder con las URLs de redirección
+    // 6. Enviar puntos de inicio
     return res.status(200).json({
       init_point: response.body.init_point,
       sandbox_init_point: response.body.sandbox_init_point
@@ -64,6 +64,7 @@ export default async function handler(req, res) {
 
   } catch (err) {
     console.error("Error en Mercado Pago:", err);
-    return res.status(500).json({ error: "Error interno en el servidor", detalle: err.message });
+    return res.status(500).json({ error: "Error interno", detalle: err.message });
   }
 }
+
