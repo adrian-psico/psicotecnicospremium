@@ -184,42 +184,21 @@
       submitBtn.textContent = "Procesando pago...";
 
       // 4) Crear preferencia en la API de Vercel
-// 4) Crear preferencia en la API de Vercel
-    try {
-      const respuesta = await fetch("https://psicotecnicospremium.vercel.app/api/pago", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ opcion: valorServicio })
-      });
+      try {
+        const respuesta = await fetch("https://psicotecnicospremium.vercel.app/api/pago", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ opcion: valorServicio })
+        });
 
-      const datos = await respuesta.json();
+        if (!respuesta.ok) {
+          throw new Error("Error en la respuesta de la API");
+        }
 
-      // Muestra el detalle exacto si la API responde con error 500
-      if (!respuesta.ok) {
-        console.error("Detalle del error devuelto por la API:", datos);
-        alert("Error del servidor: " + (datos.detalle || datos.error || "Error desconocido"));
-        return;
-      }
-
-      // Si todo sale bien, redirigir a Mercado Pago
-      if (datos.init_point) {
-        window.location.href = datos.init_point;
-      } else if (datos.sandbox_init_point) {
-        window.location.href = datos.sandbox_init_point;
-      }
-
-    } catch (error) {
-      console.error("Error al procesar pago:", error);
-    }
-
-
-
-
-
-      
+        const data = await respuesta.json();
 
         // 5) Redirigir a Mercado Pago
-        const targetUrl = data.init_point || data.sandbox_init_point;
+        const targetUrl = data.sandbox_init_point || data.init_point;
 
         if (targetUrl) {
           window.location.href = targetUrl;
