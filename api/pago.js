@@ -1,7 +1,7 @@
-import mercadopago from "mercadopago";
+import { MercadoPagoConfig, Preference } from "mercadopago";
 
 export default async function handler(req, res) {
-  // Configuración de CORS
+  // 1. Configuración de cabeceras CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -10,15 +10,18 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método no permitido" });
 
   try {
+    // 2. Obtener Token de entorno
     const token = process.env.MERCADOPAGO_ACCESS_TOKEN || process.env.MP_TOKEN;
 
     if (!token) {
-      return res.status(500).json({ error: "Falta configurar la variable MERCADOPAGO_ACCESS_TOKEN en Vercel" });
+      return res.status(500).json({ error: "Falta configurar la variable MERCADOPAGO_ACCESS_TOKEN en Vercel." });
     }
 
-    // Configurar cliente v1.x
-    mercadopago.configure({ access_token: token });
+    // 3. Inicializar cliente con el SDK v2
+    const client = new MercadoPagoConfig({ accessToken: token });
+    const preference = new Preference(client);
 
+    // 4. Leer datos del cuerpo
     const bodyData = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
     const opcion = bodyData?.opcion;
 
@@ -31,35 +34,36 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Opción de servicio inválida: " + opcion });
     }
 
-    // Crear la preferencia en Mercado Pago
-    const preference = {
-      items: [
-        {
-          id: opcion,
-          title: "Psicotécnicos Premium - " + opcion,
-          quantity: 1,
-          unit_price: Number(monto),
-          currency_id: "ARS"
-        }
-      ],
-      back_urls: {
-        success: "https://psicotecnicospremium.vercel.app/api/confirmacion",
-        failure: "https://psicotecnicospremium.vercel.app/pago-error",
-        pending: "https://psicotecnicospremium.vercel.app/pago-pendiente"
-      },
-      auto_return: "approved"
-    };
+    // 5. Crear la preferencia
+    const result = await preference.create({
+      body: {
+        items: [
+          {
+            id: opcion,
+            title: "Psicotécnicos Premium - " + opcion,
+            quantity: 1,
+            unit_price: Number(monto),
+            currency_id: "ARS"
+          }
+        ],
+        back_urls: {
+          success: "https://psicotecnicospremium.vercel.app/api/confirmacion",
+          failure: "https://psicotecnicospremium.vercel.app/pago-error",
+          pending: "https://psicotecnicospremium.vercel.app/pago-pendiente"
+        },
+        auto_return: "approved"
+      }
+    });
 
-    const response = await mercadopago.preferences.create(preference);
-
-    // DEVOLVER LAS URLs NECESARIAS POR EL FRONTEND
+    // 6. Devolver puntos de inicio al frontend
     return res.status(200).json({
-      init_point: response.body.init_point,
-      sandbox_init_point: response.body.sandbox_init_point
+      init_point: result.init_point,
+      sandbox_init_point: result.sandbox_init_point
     });
 
   } catch (err) {
-    console.error("Error al generar preferencia:", err);
+    console.error("Error al crear la preferencia:", err);
     return res.status(500).json({ error: "Error en el servidor", detalle: err.message });
   }
 }
+
