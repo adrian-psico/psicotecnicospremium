@@ -28,8 +28,11 @@
       .btn-primary:hover { background:#0f3442 }
       .btn-secondary { background:#e7dfd5; color:#134254 }
       .btn-secondary:hover { background:#ddd2c6 }
-      .pantalla-gracias-full { position:fixed; inset:0; z-index:9999; min-height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; background:#f4efe9; padding:24px }
-      .pantalla-gracias-card { width:100%; max-width:640px; background:#ffffff; border:1px solid rgba(19,66,84,.12); box-shadow:0 30px 80px rgba(15,52,66,.18); border-radius:2rem; padding:40px 28px; text-align:center }
+      .pantalla-gracias-full { position:fixed!important; top:0; right:0; bottom:0; left:0; z-index:9999; min-height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; background:#f4efe9!important; padding:24px; box-sizing:border-box }
+      .pantalla-gracias-card { width:100%; max-width:640px; background:#ffffff!important; border:1px solid rgba(19,66,84,.12); box-shadow:0 30px 80px rgba(15,52,66,.18); border-radius:2rem; padding:40px 28px; text-align:center; box-sizing:border-box }
+      .pantalla-gracias-card h2 { margin:0; color:#134254!important; font-size:2rem; font-weight:800 }
+      .pantalla-gracias-card p { margin:16px 0 0; color:#334155!important; font-size:1.05rem; line-height:1.6 }
+      .pantalla-gracias-card a { margin-top:28px; display:block; width:100%; background:#134254!important; color:#ffffff!important; padding:14px 18px; border-radius:14px; font-weight:800; text-decoration:none; box-sizing:border-box }
       .pantalla-gracias-full.hidden { display:none!important }
     </style>
 </head>
@@ -132,15 +135,15 @@
                 <a href="psico116r.html" class="btn-secondary block text-center w-full mt-3 py-3 rounded-xl font-bold transition-all">Volver</a>
             </form>
 
-            <div id="pantallaGraciasRegistro" class="pantalla-gracias-full hidden">
-                <div class="pantalla-gracias-card">
-                <h2 class="text-2xl font-bold text-teal-950">¡Gracias por registrarse!</h2>
-                <p class="mt-3 text-gray-700">En breve van a recibir por mail toda la información, incluyendo las claves de acceso generadas.</p>
-                <a href="index.html" class="mt-6 block w-full btn-primary text-white py-3 rounded-xl font-bold shadow-lg">Volver a la pantalla principal</a>
-                </div>
-            </div>
         </section>
     </main>
+    <div id="pantallaGraciasRegistro" class="pantalla-gracias-full hidden">
+      <div class="pantalla-gracias-card">
+        <h2>¡Gracias por registrarse!</h2>
+        <p>En breve van a recibir por mail toda la información, incluyendo las claves de acceso generadas.</p>
+        <a href="index.html">Volver a la pantalla principal</a>
+      </div>
+    </div>
 
     <script>
     function generarClave6() {
@@ -257,7 +260,6 @@
         localStorage.removeItem("registroEmpresaPendiente");
         document.querySelector("main").classList.add("hidden");
         document.body.classList.remove("items-center", "justify-center", "p-4");
-        document.getElementById("pantallaGraciasRegistro").classList.remove("hidden");
         document.getElementById("pantallaGraciasRegistro").classList.remove("hidden");
         history.replaceState({}, document.title, window.location.pathname);
       } catch (error) {
