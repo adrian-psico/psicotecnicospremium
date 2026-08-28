@@ -1,12 +1,22 @@
 import { MercadoPagoConfig, Preference } from "mercadopago";
 
 export default async function handler(req, res) {
-  // 1. Validar que la petición sea únicamente POST
+  // 1. Configurar cabeceras CORS para permitir peticiones desde GitHub Pages
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  // 2. Responder a las peticiones preflight (OPTIONS) que envía el navegador
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  // 3. Validar que la petición principal sea POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // 2. Obtener el Access Token de las variables de entorno
+  // 4. Obtener el Token de las variables de entorno
   const token = process.env.MERCADOPAGO_ACCESS_TOKEN || process.env.MP_TOKEN;
 
   if (!token) {
@@ -15,13 +25,13 @@ export default async function handler(req, res) {
     });
   }
 
-  // 3. Inicializar el cliente de Mercado Pago (SDK v2)
+  // 5. Inicializar el cliente de Mercado Pago
   const client = new MercadoPagoConfig({ accessToken: token });
   const preference = new Preference(client);
 
   const { opcion } = req.body;
 
-  // 4. Mapear precios según la opción elegida
+  // 6. Mapear precios según la opción elegida
   const monto =
     opcion === "Unico" ? 60000 :
     opcion === "Pack 5" ? 250000 :
@@ -31,7 +41,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Opción de servicio no válida o no especificada." });
   }
 
-  // 5. Crear la preferencia de pago
+  // 7. Crear la preferencia de pago
   try {
     const response = await preference.create({
       body: {
@@ -53,7 +63,7 @@ export default async function handler(req, res) {
       }
     });
 
-    // 6. Devolver los datos del checkout al cliente (HTML)
+    // 8. Devolver los datos del checkout al cliente
     return res.status(200).json({
       preferenceId: response.id,
       init_point: response.init_point,
