@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <!-- Configuración general -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>Preguntas Frecuentes | Psicotécnicos Premium</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Estilos propios -->
+  <style>
+    :root {
+      --brand-primary: #134254;
+      --brand-primary-dark: #0f3442;
+      --brand-bg: #f4efe9;
+      --brand-card: #ffffff;
+      --brand-muted: #64748b;
+      --brand-text: #172026;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background-color: var(--brand-bg);
+      color: var(--brand-text);
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page-bg {
+      background-color: var(--brand-bg);
+    }
+
+    .main-wrapper {
+      background-color: var(--brand-bg);
+    }
+
+    .brand-panel {
+      background-color: var(--brand-primary);
+      box-shadow: 0 30px 80px rgba(15, 52, 66, 0.28);
+    }
+
+    .professional-card {
+      background-color: var(--brand-card);
+      border: 1px solid rgba(19, 66, 84, 0.12);
+      box-shadow: 0 18px 45px rgba(15, 52, 66, 0.10);
+      transition:
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        border-color 220ms ease;
+    }
+
+    .professional-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(15, 52, 66, 0.15);
+      border-color: rgba(19, 66, 84, 0.22);
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 3px;
+      margin: 18px auto 0;
+      border-radius: 999px;
+      background-color: var(--brand-primary);
+    }
+
+    .faq-question {
+      color: var(--brand-primary);
+    }
+
+    .btn-primary {
+      background-color: var(--brand-primary);
+      box-shadow: 0 16px 30px rgba(19, 66, 84, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--brand-primary-dark);
+    }
+  </style>
+</head>
+
+<body class="page-bg antialiased min-h-screen p-4 sm:p-6 md:p-8">
+
+  <!-- CONTENEDOR GENERAL -->
+  <main class="main-wrapper max-w-4xl mx-auto rounded-[2rem] overflow-hidden border border-[#134254]/10 shadow-2xl">
+
+    <!-- BARRA SUPERIOR -->
+    <header class="page-bg py-4 text-center border-b border-[#134254]/10">
+      <span class="text-teal-800 font-black uppercase tracking-widest text-sm">
+        Psicotécnicos Premium
+      </span>
+    </header>
+
+    <!-- HERO / TÍTULO PRINCIPAL -->
+    <section class="brand-panel p-6 sm:p-8 md:p-10 text-white text-center">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
+        Preguntas Frecuentes
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl opacity-90 font-light italic">
+        Información para realizar una evaluación psicotécnica laboral online
+      </p>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="bg-[#f4efe9] p-5 sm:p-8 md:p-10 space-y-8 sm:space-y-10 text-gray-700 text-left">
+
+      <!-- FAQ 1 -->
+      <article class="professional-card p-5 sm:p-7 rounded-3xl">
+        <h2 class="section-title text-xl sm:text-2xl font-bold text-teal-950 mb-8 text-center tracking-tight">
+          1. Sobre la evaluación
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Qué es una evaluación psicotécnica laboral online?
+            </h3>
+
+            <p>
+              Es una evaluación profesional realizada en el contexto de un proceso de selección o evaluación laboral.
+              Su objetivo es explorar competencias, aptitudes, recursos y características de funcionamiento relevantes
+              para una determinada posición.
+            </p>
+
+            <p class="mt-2">
+              Los resultados se analizan teniendo en cuenta los requerimientos específicos del puesto y el contexto
+              laboral para el cual fue solicitada la evaluación.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Qué herramientas se utilizan?
+            </h3>
+
+            <p>
+              La evaluación puede integrar entrevistas y diferentes herramientas psicológicas seleccionadas por el
+              profesional de acuerdo con las características del puesto y el objetivo de la evaluación.
+            </p>
+
+            <p class="mt-2">
+              La batería utilizada puede variar según el perfil requerido, por lo que no todas las personas realizan
+              necesariamente las mismas actividades.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Necesito prepararme o tener conocimientos previos?
+            </h3>
+
+            <p>
+              No. No necesitás estudiar ni prepararte de una manera especial.
+            </p>
+
+            <p class="mt-2">
+              Lo más importante es realizar la evaluación de manera espontánea, siguiendo las consignas y en condiciones
+              adecuadas de concentración. Se recomienda no buscar previamente información, respuestas o ejemplos de las
+              pruebas, ya que esto puede interferir en la calidad y validez de los resultados.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- FAQ 2 -->
+      <article class="professional-card p-5 sm:p-7 rounded-3xl">
+        <h2 class="section-title text-xl sm:text-2xl font-bold text-teal-950 mb-8 text-center tracking-tight">
+          2. Tecnología e Inteligencia Artificial
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Se utiliza Inteligencia Artificial durante el proceso?
+            </h3>
+
+            <p>
+              Psicotécnicos Premium puede utilizar herramientas tecnológicas y de Inteligencia Artificial como apoyo en
+              determinadas tareas operativas y de procesamiento de información.
+            </p>
+
+            <p class="mt-2">
+              Estas herramientas no sustituyen la evaluación, el criterio ni la responsabilidad profesional del/de la
+              psicólogo/a interviniente.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿La Inteligencia Artificial decide si soy apto/a para un puesto?
+            </h3>
+
+            <p>
+              No. Las herramientas de Inteligencia Artificial no toman de manera autónoma la decisión profesional sobre
+              el resultado de una evaluación psicotécnica.
+            </p>
+
+            <p class="mt-2">
+              La integración e interpretación de la información relevante y la elaboración de las conclusiones del informe
+              se encuentran bajo responsabilidad de un/a profesional psicólogo/a matriculado/a.
+            </p>
+
+            <p class="mt-2">
+              Asimismo, la decisión final respecto de la contratación, incorporación o continuidad de una persona en un
+              proceso corresponde exclusivamente a la empresa solicitante.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Cómo se protege mi información?
+            </h3>
+
+            <p>
+              Los datos personales y la información obtenida durante la evaluación son tratados de manera confidencial y
+              exclusivamente para las finalidades vinculadas con el proceso para el cual se realizó la evaluación.
+            </p>
+
+            <p class="mt-2">
+              El tratamiento de datos se realiza de acuerdo con la normativa aplicable en materia de protección de datos
+              personales y con los deberes de confidencialidad propios del ejercicio profesional.
+            </p>
+
+            <p class="mt-2">
+              Podés consultar información adicional sobre tratamiento, conservación y ejercicio de derechos sobre tus
+              datos en nuestra Política de Privacidad.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- FAQ 3 -->
+      <article class="professional-card p-5 sm:p-7 rounded-3xl">
+        <h2 class="section-title text-xl sm:text-2xl font-bold text-teal-950 mb-8 text-center tracking-tight">
+          3. Criterios profesionales
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿En qué se basa la evaluación?
+            </h3>
+
+            <p>
+              Las evaluaciones se realizan dentro del marco de la Psicología Laboral y de la Evaluación Psicológica,
+              utilizando procedimientos y herramientas seleccionados según el objetivo de la evaluación y las
+              características de la posición.
+            </p>
+
+            <p class="mt-2">
+              La información obtenida a través de las distintas instancias se analiza de manera integrada. Ningún
+              resultado aislado determina por sí solo la conclusión de una evaluación.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Quién está a cargo de las evaluaciones?
+            </h3>
+
+            <p>
+              El proceso de evaluación se encuentra bajo responsabilidad profesional de la
+              <strong>Lic. Andrea Civati (M.N. 53.364)</strong>, psicóloga con formación especializada en Evaluación
+              y Diagnóstico Psicológico.
+            </p>
+
+            <p class="mt-2">
+              La selección de las herramientas, la integración de los resultados y la elaboración de las conclusiones se
+              realizan de acuerdo con criterios profesionales y éticos aplicables al ámbito de la evaluación psicolaboral.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Se evalúa a todas las personas de la misma manera?
+            </h3>
+
+            <p>
+              La metodología se define de acuerdo con las características y requerimientos de cada posición. Por ese
+              motivo, la extensión de la evaluación y las herramientas utilizadas pueden variar entre diferentes procesos.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- FAQ 4 -->
+      <article class="professional-card p-5 sm:p-7 rounded-3xl">
+        <h2 class="section-title text-xl sm:text-2xl font-bold text-teal-950 mb-8 text-center tracking-tight">
+          4. Requisitos técnicos y entorno
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Qué necesito para realizar la evaluación?
+            </h3>
+
+            <p>
+              Se recomienda utilizar una computadora de escritorio o notebook, contar con una conexión estable a Internet
+              y disponer de un navegador actualizado.
+            </p>
+
+            <p class="mt-2">
+              En aquellas instancias que lo requieran, también será necesario contar con cámara y micrófono habilitados.
+            </p>
+
+            <p class="mt-2">
+              Antes de comenzar, recibirás las indicaciones necesarias para realizar correctamente la evaluación.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Cómo debe ser el lugar donde realice la evaluación?
+            </h3>
+
+            <p>
+              Elegí un espacio privado, tranquilo, bien iluminado y libre de interrupciones.
+            </p>
+
+            <p class="mt-2">
+              Durante la evaluación deberás permanecer sin asistencia de otras personas y evitar el uso de material de
+              consulta o herramientas externas no autorizadas.
+            </p>
+
+            <p class="mt-2">
+              Estas condiciones son importantes para preservar la calidad de la evaluación.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Qué sucede si tengo un problema con Internet o con mi computadora?
+            </h3>
+
+            <p>
+              Un inconveniente técnico no implica automáticamente un resultado desfavorable.
+            </p>
+
+            <p class="mt-2">
+              Si se produce una interrupción, seguí las indicaciones de la plataforma o comunicate a través del canal de
+              asistencia informado. Dependiendo de la instancia en la que haya ocurrido el inconveniente, podrá evaluarse
+              la posibilidad de continuar o reprogramar la actividad.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- FAQ 5 -->
+      <article class="professional-card p-5 sm:p-7 rounded-3xl">
+        <h2 class="section-title text-xl sm:text-2xl font-bold text-teal-950 mb-8 text-center tracking-tight">
+          5. Privacidad y confidencialidad
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Quién recibe los resultados?
+            </h3>
+
+            <p>
+              El informe psicotécnico es confidencial y se entrega a la empresa que solicitó la evaluación, a través de
+              las personas o áreas autorizadas para intervenir en el proceso correspondiente.
+            </p>
+
+            <p class="mt-2">
+              La información se limita a aspectos pertinentes para la finalidad laboral que motivó la evaluación.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Puedo solicitar información sobre mis resultados?
+            </h3>
+
+            <p>
+              Sí. Podés solicitar información acerca de los resultados de tu evaluación.
+            </p>
+
+            <p class="mt-2">
+              Cuando corresponda, la devolución será realizada por un/a profesional psicólogo/a matriculado/a y estará
+              circunscripta a los aspectos pertinentes de la evaluación realizada y al contexto en el que fue solicitada.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Tengo que aceptar un consentimiento informado?
+            </h3>
+
+            <p>
+              Sí. Antes de comenzar la evaluación tendrás acceso al Consentimiento Informado, donde se explican la
+              finalidad, modalidad y alcance de la evaluación, así como las condiciones generales relativas al tratamiento
+              de la información.
+            </p>
+
+            <p class="mt-2">
+              Deberás leerlo y prestar tu consentimiento antes de iniciar el proceso.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- FAQ 6 -->
+      <article class="professional-card p-5 sm:p-7 rounded-3xl">
+        <h2 class="section-title text-xl sm:text-2xl font-bold text-teal-950 mb-8 text-center tracking-tight">
+          6. Preparación y duración
+        </h2>
+
+        <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Cuánto dura la evaluación?
+            </h3>
+
+            <p>
+              La duración depende de las características de la posición y de la batería seleccionada para cada proceso.
+            </p>
+
+            <p class="mt-2">
+              Como referencia, una evaluación puede requerir aproximadamente entre
+              <strong>60 y 120 minutos</strong>, aunque este tiempo puede variar.
+            </p>
+
+            <p class="mt-2">
+              Antes de comenzar recibirás información sobre la modalidad correspondiente a tu evaluación.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="faq-question text-base sm:text-lg font-bold mb-2">
+              ¿Puedo realizar la evaluación desde el celular?
+            </h3>
+
+            <p>
+              Salvo que se indique expresamente lo contrario, recomendamos realizarla desde una computadora de escritorio
+              o notebook.
+            </p>
+
+            <p class="mt-2">
+              El tamaño de pantalla y las características de algunos dispositivos móviles pueden dificultar la correcta
+              visualización o realización de determinadas actividades.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- MENSAJE FINAL -->
+      <section class="brand-panel p-5 sm:p-8 rounded-[2rem] text-white text-center italic text-base sm:text-lg md:text-xl shadow-xl">
+        La evaluación psicotécnica online combina criterio profesional, confidencialidad y herramientas adecuadas para cada proceso laboral.
+      </section>
+
+      <!-- BOTÓN FINAL -->
+      <div class="text-center pt-2">
+        <button
+          type="button"
+          onclick="window.location.href='PsicotecnicosPremium-Empresas.html';"
+          class="btn-primary w-full sm:w-auto text-white px-6 sm:px-10 py-3 rounded-full font-bold transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#134254]/25"
+        >
+          Cerrar y Volver
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>
