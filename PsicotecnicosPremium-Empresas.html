@@ -72,6 +72,10 @@
         .btn-primary:hover {
             background: var(--brand-primary-dark);
         }
+        .whatsapp-float { position: fixed; right: 20px; bottom: 20px; z-index: 9999; width: 58px; height: 58px; border-radius: 50%; background-color: #25D366; color: #ffffff; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); transition: transform 0.2s ease, background-color 0.2s ease; }
+        .whatsapp-float:hover { background-color: #1ebe5d; transform: scale(1.08); }
+        .whatsapp-float:focus { outline: 3px solid rgba(37, 211, 102, 0.35); outline-offset: 3px; }
+        .whatsapp-float svg { width: 34px; height: 34px; display: block; }
     </style>
 </head>
 
@@ -171,6 +175,7 @@
 
     <!-- MODALES Y SCRIPTS ORIGINALES -->
     <!-- Pegá aquí tus modales y tu JavaScript completo sin cambios -->
+    <a href="https://wa.me/5491151360554" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp" title="Contactar por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.21c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.83 1.02-.15.17-.3.2-.56.07-.26-.13-1.09-.4-2.07-1.28-.77-.68-1.28-1.52-1.43-1.78-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.33-.02-.46-.07-.13-.59-1.41-.8-1.94-.21-.51-.43-.44-.59-.45h-.5c-.17 0-.46.07-.7.33-.24.26-.91.89-.91 2.17 0 1.28.93 2.52 1.06 2.69.13.17 1.83 2.8 4.44 3.93.62.27 1.1.43 1.48.55.62.2 1.19.17 1.64.1.5-.07 1.54-.63 1.76-1.24.22-.61.22-1.13.15-1.24-.06-.11-.24-.17-.5-.3zM16.04 4.8c-6.09 0-11.03 4.94-11.03 11.03 0 1.94.51 3.84 1.47 5.51L4.91 27.2l6-1.57a11 11 0 0 0 5.13 1.31h.01c6.09 0 11.03-4.94 11.03-11.03S22.13 4.8 16.04 4.8zm0 20.27h-.01c-1.62 0-3.21-.44-4.59-1.27l-.33-.2-3.56.93.95-3.47-.22-.35a9.12 9.12 0 0 1-1.4-4.88c0-5.05 4.11-9.16 9.17-9.16 2.45 0 4.75.95 6.48 2.69a9.1 9.1 0 0 1 2.68 6.48c0 5.05-4.11 9.16-9.17 9.16z"/></svg></a>
 </body>
 </html>
 
