@@ -57,12 +57,11 @@ No utilices regla ni otros elementos para ayudarte a realizar el dibujo.</div></
                 <br>
                 
                 <div class="canvas-container mb-10 text-center">
-                    <p class="text-sm text-gray-600 mb-4">Subí la foto de tu dibujo terminado (no scanner):</p>
+                    <p class="text-sm text-gray-600 mb-4">Si estás en PC, seleccioná archivo. Si estás con el teléfono movil, tomá la foto:</p>
                     <input type="file" id="archivo-dibujo-1" accept="image/*" capture="environment"
-                        onchange="capturarTiempo(1)"
-                        class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 
-                        file:rounded-full file:border-0 file:text-sm file:font-semibold 
-                        file:bg-[#134254] file:text-white hover:file:bg-[#0f3442] cursor-pointer">
+                        onchange="capturarTiempo(1); mostrarNombre(this, 'nombre-archivo-1')"
+                        class="hidden">
+                    <label for="archivo-dibujo-1" class="inline-block cursor-pointer bg-[#134254] text-white text-sm font-semibold py-2 px-6 rounded-full hover:bg-[#0f3442]">Tomar foto o seleccionar archivo</label>
                 </div>
 
                 <div class="flex justify-center">
@@ -84,12 +83,11 @@ No utilices regla ni otros elementos para ayudarte a realizar el dibujo.</div></
                 <br>
                 
                 <div class="canvas-container mb-10 text-center">
-                    <p class="text-sm text-gray-600 mb-4">Subí la foto de tu dibujo terminado:</p>
+                    <p class="text-sm text-gray-600 mb-4">Si estás en PC, seleccioná archivo. Si estás con el teléfono movil, tomá la foto:</p>
                     <input type="file" id="archivo-dibujo-2" accept="image/*" capture="environment"
-                        onchange="capturarTiempo(2)"
-                        class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 
-                        file:rounded-full file:border-0 file:text-sm file:font-semibold 
-                        file:bg-[#134254] file:text-white hover:file:bg-[#0f3442] cursor-pointer">
+                        onchange="capturarTiempo(2); mostrarNombre(this, 'nombre-archivo-2')"
+                        class="hidden">
+                    <label for="archivo-dibujo-2" class="inline-block cursor-pointer bg-[#134254] text-white text-sm font-semibold py-2 px-6 rounded-full hover:bg-[#0f3442]">Tomar foto o seleccionar archivo</label>
                 </div>
 
                 <div class="flex flex-col gap-3 items-center">
@@ -127,6 +125,11 @@ No utilices regla ni otros elementos para ayudarte a realizar el dibujo.</div></
             const transcurrido = Math.floor((Date.now() - inicioTest) / 1000);
             if (n === 1) tiempoDibujo1 = transcurrido;
             else tiempoDibujo2 = transcurrido - tiempoDibujo1;
+        }
+
+        function mostrarNombre(input, idSpan) {
+            let span = document.getElementById(idSpan);
+            if (!span) {                 span = document.createElement("span");                 span.id = idSpan;                 span.className = "ml-3 text-sm text-gray-600 break-all";                 document.querySelector('label[for="' + input.id + '"]').insertAdjacentElement("afterend", span);             }             span.textContent = input.files[0] ? input.files[0].name : "";
         }
 
         function irAPantalla2() {
