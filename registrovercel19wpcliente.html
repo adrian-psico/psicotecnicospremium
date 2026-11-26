@@ -133,6 +133,15 @@
 
         <section class="p-4 sm:p-6 md:p-8">
             <form id="formRegistroEmpresa" action="https://formspree.io/f/xeernyaa" method="POST" class="space-y-4 text-left" onsubmit="return manejarSubmitRegistro(event)">
+                <div class="brand-hero mt-0 mb-4 p-5 sm:p-7 text-white text-center rounded-[2rem]">
+                    <h2 class="text-2xl sm:text-3xl font-bold italic tracking-tight">Gracias por estar aquí nuevamente</h2>
+                </div>
+                <div class="brand-note rounded-[2rem] p-5 sm:p-6 text-left space-y-4">
+                    <p class="text-sm sm:text-base text-slate-700">Estás registrado con el nombre: <strong class="text-[#134254]" data-campo="NombreEmpresa"></strong></p>
+                    <p class="text-sm sm:text-base text-slate-700">Te quedan los siguientes códigos disponibles: <strong class="text-[#134254]" data-campo="CodigosDisponibles"></strong></p>
+                    <p class="text-sm sm:text-base text-slate-700">Puedes volver a comprar haciendo click aquí abajo</p>
+                </div>
+                <button type="submit" class="btn-primary w-full text-white py-3 rounded-xl font-bold transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#134254]/25">Terminar y Pagar</button>
             </form>
 
         </section>
