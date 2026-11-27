@@ -272,7 +272,7 @@
                 var res = await llamarApiClientes({ accion: "verificar", email: email, codigo: codigo });
                 if (res.ok) {
                     // Redirige al perfil del cliente (ajusta la URL de destino)
-                    window.location.href = "https://psicotecnicospremium.vercel.app/registrovercel21wpcliente.html?email=" + encodeURIComponent(email) + "&token=" + encodeURIComponent(res.token || "") + "&empresa=" + encodeURIComponent(res.empresa || res.Empresa || "") + "&claves=" + encodeURIComponent(res.ClavesAcceso || res.clavesAcceso || "");
+                    window.location.href = "https://psicotecnicospremium.vercel.app/registrovercel23wpcliente.html?email=" + encodeURIComponent(email) + "&token=" + encodeURIComponent(res.token || "") + "&empresa=" + encodeURIComponent(res.empresa || res.Empresa || "") + "&claves=" + encodeURIComponent(res.ClavesAcceso || res.clavesAcceso || "");
                 } else {
                     msg.textContent = res.mensaje || "Código incorrecto o vencido.";
                     limpiarCamposCliente();
